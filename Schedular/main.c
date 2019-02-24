@@ -8,6 +8,7 @@
 /*#include <avr/io.h>*/
 #include "DIO.h"
 #include "DIO_Definitions.h"
+#include "Task.h"
 
 int main(void)
 {
@@ -17,7 +18,13 @@ int main(void)
 	DIO_SetPinDirection(PIN14,OUTPUT);
 	DIO_SetPinDirection(PIN15,OUTPUT);
 	
-    /* Replace with your application code */
+	/*Add Tasks*/
+	scheduler_Add_Task(led1);
+	scheduler_Add_Task(led2);
+	scheduler_Add_Task(led3);
+	scheduler_Add_Task(led4);
+	
+    /* Start Schedular */
 	schedulerInit_AndStart();
 	
     while (1)

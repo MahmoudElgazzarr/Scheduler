@@ -9,6 +9,12 @@
 #ifndef SHEDULAR_H_
 #define SHEDULAR_H_
 
+
+#define NUM_TASKS 4
+#define MAX_NUM_TASKS 9
+
+void (*tasks[MAX_NUM_TASKS])(void);
+uint8 scheduler_Add_Task(void (*Task)(void));
 /*Defines OS Tick Interval*/
 
 

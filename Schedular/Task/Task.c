@@ -8,10 +8,6 @@
 #include "DIO_Definitions.h"
 #include "DIO.h"
 
-void (*tasks[MAX_NUM_TASKS])(void) = {led1,led2,led3,led4};
-	
-uint8 Last = NUM_TASKS - ONE ;
-
 static volatile uint16 count_led1=0;
 static volatile uint16 count_led2=0;
 static volatile uint16 count_led3=0;
@@ -73,8 +69,3 @@ void led4()
 }
 
 
-void scheduler_Add_Task(void (*Task)(void))
-{
-		tasks[Last + ONE] = Task;
-		Last++;
-}

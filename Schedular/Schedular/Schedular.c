@@ -11,6 +11,9 @@
 /*void ((*arr_To_Functions[])(void));*/
 
 volatile uint8 flag = 0;
+volatile uint8 Last = ZERO;
+
+void (*tasks[MAX_NUM_TASKS])(void);
 
 void schedulerInit_AndStart()
 {
@@ -28,6 +31,19 @@ void set_flag(void)
 		flag = 1;
 	}
 }
+uint8 scheduler_Add_Task(void (*Task)(void))
+{
+	if( NUM_TASKS >= MAX_NUM_TASKS )
+	{
+		return 0;
+	}
+	else
+	{
+	tasks[ Last ] = Task;
+	Last++;
+	}
+}
+
 void dispatcher(void)
 {
 	volatile static uint8 NewTickFlag = ZERO ;
