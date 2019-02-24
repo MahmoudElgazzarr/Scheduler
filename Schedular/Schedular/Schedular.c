@@ -13,7 +13,16 @@
 volatile uint8 flag = 0;
 volatile uint8 Last = ZERO;
 
-void (*tasks[MAX_NUM_TASKS])(void);
+typedef struct Tasks_Struct
+{
+	void (*Tasks_Ptr)();
+	const uint8 Task_Periodicity;
+	uint8 remaining_Ticks;
+}Tasks_T;
+
+Tasks_T Tasks[MAX_NUM_TASKS];
+
+
 
 void schedulerInit_AndStart()
 {
@@ -39,7 +48,7 @@ uint8 scheduler_Add_Task(void (*Task)(void))
 	}
 	else
 	{
-	tasks[ Last ] = Task;
+	Tasks[Last].Tasks_Ptr = Task;
 	Last++;
 	}
 }
@@ -59,32 +68,32 @@ void dispatcher(void)
 
 	if(NewTickFlag == ONE)
 	{
-		tasks[ZERO]();
+		Tasks[ZERO].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == TWO)
 	{
-		tasks[ONE]();
+		Tasks[ONE].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == THREE)
 	{
-		tasks[TWO]();
+		Tasks[TWO].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == FOUR)
 	{
-		tasks[THREE]();
+		Tasks[THREE].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == FIVE)
 	{
-		tasks[FOUR]();
+		Tasks[FOUR].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == SIX)
 	{
-		tasks[FIVE]();
+		Tasks[FIVE].Tasks_Ptr();
 		flag = 0;
 	}
 	}

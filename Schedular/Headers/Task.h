@@ -17,8 +17,6 @@
 /*defines Maxmium Number of Tasks*/
 
 
-
-
 /*Function Definitions */
 void led1();
 void led2();

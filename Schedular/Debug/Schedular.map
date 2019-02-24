@@ -10,6 +10,7 @@ Common symbol       size              file
 
 Pointer_To_Func     0x2               Timer/Timer.o
 tasks               0x12              Schedular/Schedular.o
+Tasks               0x24              Schedular/Schedular.o
 Tick                0x1               Timer/Timer.o
 
 Discarded input sections
@@ -197,7 +198,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x82c
+.text           0x00000000      0x830
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -291,33 +292,33 @@ END GROUP
                 0x000004a4       0x1e Schedular/Schedular.o
                 0x000004a4                set_flag
  .text.scheduler_Add_Task
-                0x000004c2       0x3e Schedular/Schedular.o
+                0x000004c2       0x42 Schedular/Schedular.o
                 0x000004c2                scheduler_Add_Task
  .text.dispatcher
-                0x00000500       0xd0 Schedular/Schedular.o
-                0x00000500                dispatcher
- .text.led1     0x000005d0       0x58 Task/Task.o
-                0x000005d0                led1
- .text.led2     0x00000628       0x58 Task/Task.o
-                0x00000628                led2
- .text.led3     0x00000680       0x58 Task/Task.o
-                0x00000680                led3
- .text.led4     0x000006d8       0x58 Task/Task.o
-                0x000006d8                led4
+                0x00000504       0xd0 Schedular/Schedular.o
+                0x00000504                dispatcher
+ .text.led1     0x000005d4       0x58 Task/Task.o
+                0x000005d4                led1
+ .text.led2     0x0000062c       0x58 Task/Task.o
+                0x0000062c                led2
+ .text.led3     0x00000684       0x58 Task/Task.o
+                0x00000684                led3
+ .text.led4     0x000006dc       0x58 Task/Task.o
+                0x000006dc                led4
  .text.timer_init
-                0x00000730       0x58 Timer/Timer.o
-                0x00000730                timer_init
+                0x00000734       0x58 Timer/Timer.o
+                0x00000734                timer_init
  .text.set_Callback_Function
-                0x00000788       0x26 Timer/Timer.o
-                0x00000788                set_Callback_Function
+                0x0000078c       0x26 Timer/Timer.o
+                0x0000078c                set_Callback_Function
  .text.__vector_10
-                0x000007ae       0x7a Timer/Timer.o
-                0x000007ae                __vector_10
-                0x00000828                . = ALIGN (0x2)
+                0x000007b2       0x7a Timer/Timer.o
+                0x000007b2                __vector_10
+                0x0000082c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000828        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000828                _exit
-                0x00000828                exit
+ .fini9         0x0000082c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000082c                _exit
+                0x0000082c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -336,11 +337,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000828        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000082c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000082c                _etext = .
+                0x00000830                _etext = .
 
-.data           0x00800060        0x0 load address 0x0000082c
+.data           0x00800060        0x0 load address 0x00000830
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -352,7 +353,7 @@ END GROUP
                 0x00800060                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00800060       0x20
+.bss            0x00800060       0x44
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -360,7 +361,7 @@ END GROUP
                 0x00800060                flag
  .bss.Last      0x00800061        0x1 Schedular/Schedular.o
                 0x00800061                Last
- .bss.NewTickFlag.1614
+ .bss.NewTickFlag.1618
                 0x00800062        0x1 Schedular/Schedular.o
  .bss.count_led1
                 0x00800063        0x2 Task/Task.o
@@ -371,20 +372,21 @@ END GROUP
  .bss.count_led4
                 0x00800069        0x2 Task/Task.o
  *(COMMON)
- COMMON         0x0080006b       0x12 Schedular/Schedular.o
+ COMMON         0x0080006b       0x36 Schedular/Schedular.o
                 0x0080006b                tasks
- COMMON         0x0080007d        0x3 Timer/Timer.o
-                0x0080007d                Pointer_To_Func
-                0x0080007f                Tick
-                0x00800080                PROVIDE (__bss_end, .)
-                0x0000082c                __data_load_start = LOADADDR (.data)
-                0x0000082c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080007d                Tasks
+ COMMON         0x008000a1        0x3 Timer/Timer.o
+                0x008000a1                Pointer_To_Func
+                0x008000a3                Tick
+                0x008000a4                PROVIDE (__bss_end, .)
+                0x00000830                __data_load_start = LOADADDR (.data)
+                0x00000830                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800080        0x0
+.noinit         0x008000a4        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800080                _end = .
+                0x008000a4                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -469,32 +471,32 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xa20
+.debug_info     0x00000000      0xa96
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_info    0x000004e6      0x15e DIO/DIO.o
  .debug_info    0x00000644       0x9c main.o
- .debug_info    0x000006e0      0x13d Schedular/Schedular.o
- .debug_info    0x0000081d       0xfc Task/Task.o
- .debug_info    0x00000919      0x107 Timer/Timer.o
+ .debug_info    0x000006e0      0x1b3 Schedular/Schedular.o
+ .debug_info    0x00000893       0xfc Task/Task.o
+ .debug_info    0x0000098f      0x107 Timer/Timer.o
 
-.debug_abbrev   0x00000000      0x7a7
+.debug_abbrev   0x00000000      0x7d8
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_abbrev  0x000004a3       0x9c DIO/DIO.o
  .debug_abbrev  0x0000053f       0x71 main.o
- .debug_abbrev  0x000005b0       0xea Schedular/Schedular.o
- .debug_abbrev  0x0000069a       0x5a Task/Task.o
- .debug_abbrev  0x000006f4       0xb3 Timer/Timer.o
+ .debug_abbrev  0x000005b0      0x11b Schedular/Schedular.o
+ .debug_abbrev  0x000006cb       0x5a Task/Task.o
+ .debug_abbrev  0x00000725       0xb3 Timer/Timer.o
 
-.debug_line     0x00000000      0x834
+.debug_line     0x00000000      0x843
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_line    0x00000115      0x2c2 DIO/DIO.o
  .debug_line    0x000003d7       0x79 main.o
- .debug_line    0x00000450      0x17e Schedular/Schedular.o
- .debug_line    0x000005ce      0x142 Task/Task.o
- .debug_line    0x00000710      0x124 Timer/Timer.o
+ .debug_line    0x00000450      0x18d Schedular/Schedular.o
+ .debug_line    0x000005dd      0x142 Task/Task.o
+ .debug_line    0x0000071f      0x124 Timer/Timer.o
 
 .debug_frame    0x00000000      0x2c8
  *(.debug_frame)
@@ -504,18 +506,18 @@ END GROUP
  .debug_frame   0x0000017c       0x94 Task/Task.o
  .debug_frame   0x00000210       0xb8 Timer/Timer.o
 
-.debug_str      0x00000000      0x46c
+.debug_str      0x00000000      0x4b2
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_str     0x00000196      0x18c DIO/DIO.o
                                 0x1c0 (size before relaxing)
  .debug_str     0x00000322       0x3b main.o
                                 0x16b (size before relaxing)
- .debug_str     0x0000035d       0x4d Schedular/Schedular.o
-                                0x1b7 (size before relaxing)
- .debug_str     0x000003aa       0x42 Task/Task.o
+ .debug_str     0x0000035d       0x93 Schedular/Schedular.o
+                                0x1fd (size before relaxing)
+ .debug_str     0x000003f0       0x42 Task/Task.o
                                 0x186 (size before relaxing)
- .debug_str     0x000003ec       0x80 Timer/Timer.o
+ .debug_str     0x00000432       0x80 Timer/Timer.o
                                 0x1c3 (size before relaxing)
 
 .debug_loc      0x00000000      0x4fc
