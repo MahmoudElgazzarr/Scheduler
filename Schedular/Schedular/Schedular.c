@@ -8,19 +8,23 @@
 #include "Schedular.h"
 #include "Task.h"
 
-/*void ((*arr_To_Functions[])(void));*/
+/*Flag To Be Set In The ISR When Happens*/
 
 volatile uint8 flag = ZERO;
-volatile uint8 Last = ZERO;
+
+/*Variable To Point To the last Element In the array Of Tasks*/
+static volatile uint8 Last;
 
 
+/*Create Array of Structure To the Tasks*/
 
 Tasks_T Tasks_Arr[MAX_NUM_TASKS];
 
 void scheduler_Init()
 {
 	uint32 i;
-	for(i=0;i<NUM_TASKS;i++)
+	/*Inialize array of structure With Zero*/
+	for(i=ZERO;i<NUM_TASKS;i++)
 	{
 		Tasks_Arr[i].Tasks_Ptr = NULL;
 		Tasks_Arr[i].Task_Priority =ZERO;
@@ -47,10 +51,15 @@ void set_flag(void)
 }
 uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity)
 {
+	/*If Num of Tasks is Larger Than Max Number Of Tasks return False*/
 	if( NUM_TASKS >= MAX_NUM_TASKS )
 	{
 		return FALSE;
 	}
+	/*Else set pointer of Function into the Structure
+		Set Remaining Ticks With Periodicity
+		Increment Last Element of Array Of structure
+	*/
 	else
 	{
 	Tasks_Arr[Last].Tasks_Ptr = Task;

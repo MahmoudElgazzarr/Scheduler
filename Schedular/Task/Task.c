@@ -8,25 +8,23 @@
 #include "DIO_Definitions.h"
 #include "DIO.h"
 
-static volatile uint16 count_led1=0;
-static volatile uint16 count_led2=0;
-static volatile uint16 count_led3=0;
-static volatile uint16 count_led4=0;
-	
-void led1()
+/*Task 1*/	
+void Task1()
 {
 	DIO_TogglePin(PIN12);
 }
-void led2()
+/*Task2*/
+void Task2()
 {
 	DIO_TogglePin(PIN13);
 }
-void led3()
+/*Task3*/
+void Task3()
 {
 	DIO_TogglePin(PIN14);
 }
-
-void led4()
+/*Task 4*/
+void Task4()
 {
 	DIO_TogglePin(PIN15);
 }

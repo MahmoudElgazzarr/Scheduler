@@ -18,10 +18,10 @@
 
 
 /*Function Definitions */
-void led1();
-void led2();
-void led3();
-void led4();
+void Task1();
+void Task2();
+void Task3();
+void Task4();
 
 
 #endif /* TASK_H_ */

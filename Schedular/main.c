@@ -18,15 +18,15 @@ int main(void)
 	DIO_SetPinDirection(PIN13,OUTPUT);
 	DIO_SetPinDirection(PIN14,OUTPUT);
 	DIO_SetPinDirection(PIN15,OUTPUT);
-	/*Schdular Data Structure Init*/
+	/*Schedular Data Structure Init*/
 	scheduler_Init();
 	
 	/*Add Tasks*/
-	scheduler_Add_Task(led1,500);
-	scheduler_Add_Task(led2,500);
-	scheduler_Add_Task(led3,500);
-	scheduler_Add_Task(led4,500);
-	/**/
+	scheduler_Add_Task(Task1,500);
+	scheduler_Add_Task(Task2,500);
+	scheduler_Add_Task(Task3,500);
+	scheduler_Add_Task(Task4,500);
+	
     /* Start Schedular */
 	scheduler_Start();
 	
