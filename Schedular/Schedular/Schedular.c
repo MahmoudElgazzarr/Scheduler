@@ -10,7 +10,7 @@
 
 /*void ((*arr_To_Functions[])(void));*/
 
-volatile uint8 flag = 0;
+volatile uint8 flag = ZERO;
 volatile uint8 Last = ZERO;
 
 
@@ -23,9 +23,9 @@ void scheduler_Init()
 	for(i=0;i<NUM_TASKS;i++)
 	{
 		Tasks_Arr[i].Tasks_Ptr = NULL;
-		Tasks_Arr[i].Task_Priority = 0;
-		Tasks_Arr[i].Task_Periodicity = 0;
-		Tasks_Arr[i].Task_Priority = 99;
+		Tasks_Arr[i].Task_Priority =ZERO;
+		Tasks_Arr[i].Task_Periodicity = ZERO;
+		Tasks_Arr[i].Task_Priority = ZERO;
 	}
 }
 
@@ -40,50 +40,51 @@ void scheduler_Start()
 }
 void set_flag(void)
 {
-	if( flag == 0)
+	if( flag == ZERO)
 	{
-		flag = 1;
+		flag = ONE;
 	}
 }
 uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity)
 {
 	if( NUM_TASKS >= MAX_NUM_TASKS )
 	{
-		return 0;
+		return FALSE;
 	}
 	else
 	{
 	Tasks_Arr[Last].Tasks_Ptr = Task;
 	Tasks_Arr[Last].Task_Periodicity = Periodicity;
+	Tasks_Arr[Last].Remaining_Ticks = Periodicity;
 	Last++;
+	return TRUE;
 	}
 }
 
 void dispatcher(void)
 {
 	volatile static uint8 NewTickFlag = ZERO ;
-	uint32 i,j;
-	
-	if (1 == flag)
+	uint32 j;
+	/*IF Timer Interrupt Happened Flag Will Be One*/
+	if (ONE == flag)
 	{
 		/* Increment Flag */
 		NewTickFlag++;
-	
-		
-	for(j=0;j<NUM_TASKS;j++)
+	/*For Loop For The Tasks and Scheduale Them*/
+	for(j=ZERO;j<NUM_TASKS;j++)
 	{
-			for(i=1;i<MAX_Periodicity;i++)
+		/*Decrement Periodicity by ONE Every Tick */
+		Tasks_Arr[j].Remaining_Ticks--;
+		/*IF Remaining  Ticks Equals Zero Excute Task and Set Remaining To The Periodicity*/
+		if(Tasks_Arr[j].Remaining_Ticks == ZERO )
 		{
-			if(Tasks_Arr[j].Task_Periodicity == ( NewTickFlag * i))
-			{
-				Tasks_Arr[j].Tasks_Ptr();
-			}
+			/*Call Function*/
+			Tasks_Arr[j].Tasks_Ptr();
+			/*Set Remaining To The Periodicity*/
+			Tasks_Arr[j].Remaining_Ticks = Tasks_Arr[j].Task_Periodicity;
 		}
 	}
-		if(NewTickFlag == MAX_Periodicity)
-		{
-			NewTickFlag = 0;
-		}
-		flag = 0;
+	/*Set Flag To Zero*/
+		flag = ZERO;
 	}
 }

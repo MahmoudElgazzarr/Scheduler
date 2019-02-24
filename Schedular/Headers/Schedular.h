@@ -12,13 +12,15 @@
 #define OS_TICK_INTERVAL_MSEC 1
 #define NUM_TASKS 4
 #define MAX_NUM_TASKS 9
-#define MAX_Periodicity 500
+
+#define TRUE 1
+#define FALSE 0
 
 typedef struct Tasks_Struct
 {
 	void (*Tasks_Ptr)(void);
 	uint8 Task_Periodicity;
-	uint32 remaining_Ticks;
+	uint32 Remaining_Ticks;
 	uint32 Task_Priority;
 }Tasks_T;
 
