@@ -15,12 +15,12 @@ volatile uint8 Last = ZERO;
 
 typedef struct Tasks_Struct
 {
-	void (*Tasks_Ptr)();
+	void (*Tasks_Ptr)(void);
 	const uint8 Task_Periodicity;
 	uint8 remaining_Ticks;
 }Tasks_T;
 
-Tasks_T Tasks[MAX_NUM_TASKS];
+Tasks_T Tasks_Arr[MAX_NUM_TASKS];
 
 
 
@@ -48,7 +48,7 @@ uint8 scheduler_Add_Task(void (*Task)(void))
 	}
 	else
 	{
-	Tasks[Last].Tasks_Ptr = Task;
+	Tasks_Arr[Last].Tasks_Ptr = Task;
 	Last++;
 	}
 }
@@ -68,32 +68,32 @@ void dispatcher(void)
 
 	if(NewTickFlag == ONE)
 	{
-		Tasks[ZERO].Tasks_Ptr();
+		Tasks_Arr[ZERO].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == TWO)
 	{
-		Tasks[ONE].Tasks_Ptr();
+		Tasks_Arr[ONE].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == THREE)
 	{
-		Tasks[TWO].Tasks_Ptr();
+		Tasks_Arr[TWO].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == FOUR)
 	{
-		Tasks[THREE].Tasks_Ptr();
+		Tasks_Arr[THREE].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == FIVE)
 	{
-		Tasks[FOUR].Tasks_Ptr();
+		Tasks_Arr[FOUR].Tasks_Ptr();
 		flag = 0;
 	}
 	else if (NewTickFlag == SIX)
 	{
-		Tasks[FIVE].Tasks_Ptr();
+		Tasks_Arr[FIVE].Tasks_Ptr();
 		flag = 0;
 	}
 	}
