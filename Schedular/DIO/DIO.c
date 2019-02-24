@@ -132,6 +132,17 @@ uint8 DIO_ReadPin(uint8 PinNum)
 		}
 		return return_value;
 }
+uint8 DIO_TogglePin(uint8 PinNum)
+{
+	if(DIO_ReadPin(PinNum) == LOW)
+	{
+		DIO_WritePin(PinNum,HIGH);
+	}
+	else
+	{
+		DIO_WritePin(PinNum,LOW);
+	}
+}
 uint8 DIO_ReadPort(uint8 PortNumber)
 {
 	switch(PortNumber)

@@ -15,57 +15,20 @@ static volatile uint16 count_led4=0;
 	
 void led1()
 {
-	count_led1++;
-	if(count_led1 == 250)
-	{
-		DIO_WritePin(PIN12,HIGH);
-	}
-	else if (count_led1 == 500 )
-	{
-		DIO_WritePin(PIN12,LOW);
-		count_led1 = 0;
-	}
-	
+	DIO_TogglePin(PIN12);
 }
 void led2()
 {
-		count_led2++;
-		if(count_led2 == 250)
-		{
-			DIO_WritePin(PIN13,HIGH);
-		}
-		else if (count_led2 == 500 )
-		{
-			DIO_WritePin(PIN13,LOW);
-			count_led2=0;
-		}
+	DIO_TogglePin(PIN13);
 }
 void led3()
 {
-		count_led3++;
-		if(count_led3 == 250)
-		{
-			DIO_WritePin(PIN14,HIGH);
-		}
-		else if (count_led3 == 500 )
-		{
-			DIO_WritePin(PIN14,LOW);
-			count_led3 = 0;
-		}
+	DIO_TogglePin(PIN14);
 }
 
 void led4()
 {
-		count_led4++;
-		if(count_led4 == 250)
-		{
-			DIO_WritePin(PIN15,HIGH);
-		}
-		else if (count_led4 == 500 )
-		{
-			DIO_WritePin(PIN15,LOW);
-			count_led4 = 0;
-		}
+	DIO_TogglePin(PIN15);
 }
 
 

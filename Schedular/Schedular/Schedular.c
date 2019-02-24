@@ -13,18 +13,23 @@
 volatile uint8 flag = 0;
 volatile uint8 Last = ZERO;
 
-typedef struct Tasks_Struct
-{
-	void (*Tasks_Ptr)(void);
-	const uint8 Task_Periodicity;
-	uint8 remaining_Ticks;
-}Tasks_T;
+
 
 Tasks_T Tasks_Arr[MAX_NUM_TASKS];
 
+void scheduler_Init()
+{
+	uint32 i;
+	for(i=0;i<NUM_TASKS;i++)
+	{
+		Tasks_Arr[i].Tasks_Ptr = NULL;
+		Tasks_Arr[i].Task_Priority = 0;
+		Tasks_Arr[i].Task_Periodicity = 0;
+		Tasks_Arr[i].Task_Priority = 99;
+	}
+}
 
-
-void schedulerInit_AndStart()
+void scheduler_Start()
 {
 	timer_init();
 	set_Callback_Function(set_flag);
@@ -40,7 +45,7 @@ void set_flag(void)
 		flag = 1;
 	}
 }
-uint8 scheduler_Add_Task(void (*Task)(void))
+uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity)
 {
 	if( NUM_TASKS >= MAX_NUM_TASKS )
 	{
@@ -49,6 +54,7 @@ uint8 scheduler_Add_Task(void (*Task)(void))
 	else
 	{
 	Tasks_Arr[Last].Tasks_Ptr = Task;
+	Tasks_Arr[Last].Task_Periodicity = Periodicity;
 	Last++;
 	}
 }
@@ -56,45 +62,31 @@ uint8 scheduler_Add_Task(void (*Task)(void))
 void dispatcher(void)
 {
 	volatile static uint8 NewTickFlag = ZERO ;
+	uint32 i,j;
+/*
+// 		if (NewTickFlag == NUM_TASKS + 1 )
+// 	{
+// 			NewTickFlag = ONE;
+// 			flag = 0;
+// 	}
+*/
+	
 	if (1 == flag)
 	{
+		/* Increment Flag */
+		
 	NewTickFlag++;
 	
-	if (NewTickFlag == NUM_TASKS + 1 )
+	for(j=0;j<NUM_TASKS;j++)
 	{
-		NewTickFlag = ONE;
-		flag = 0;
+			for(i=1;i<MAX_Periodicity;i++)
+		{
+			if(Tasks_Arr[j].Task_Periodicity == ( NewTickFlag * i))
+			{
+				Tasks_Arr[j].Tasks_Ptr();
+			}
+		}
 	}
-
-	if(NewTickFlag == ONE)
-	{
-		Tasks_Arr[ZERO].Tasks_Ptr();
 		flag = 0;
-	}
-	else if (NewTickFlag == TWO)
-	{
-		Tasks_Arr[ONE].Tasks_Ptr();
-		flag = 0;
-	}
-	else if (NewTickFlag == THREE)
-	{
-		Tasks_Arr[TWO].Tasks_Ptr();
-		flag = 0;
-	}
-	else if (NewTickFlag == FOUR)
-	{
-		Tasks_Arr[THREE].Tasks_Ptr();
-		flag = 0;
-	}
-	else if (NewTickFlag == FIVE)
-	{
-		Tasks_Arr[FOUR].Tasks_Ptr();
-		flag = 0;
-	}
-	else if (NewTickFlag == SIX)
-	{
-		Tasks_Arr[FIVE].Tasks_Ptr();
-		flag = 0;
-	}
 	}
 }

@@ -9,6 +9,7 @@
 #include "DIO.h"
 #include "DIO_Definitions.h"
 #include "Task.h"
+#include "Schedular.h"
 
 int main(void)
 {
@@ -17,15 +18,17 @@ int main(void)
 	DIO_SetPinDirection(PIN13,OUTPUT);
 	DIO_SetPinDirection(PIN14,OUTPUT);
 	DIO_SetPinDirection(PIN15,OUTPUT);
+	/*Schdular Data Structure Init*/
+	scheduler_Init();
 	
 	/*Add Tasks*/
-	scheduler_Add_Task(led1);
-	scheduler_Add_Task(led2);
-	scheduler_Add_Task(led3);
-	scheduler_Add_Task(led4);
-	
+	scheduler_Add_Task(led1,1000);
+	scheduler_Add_Task(led2,1000);
+	scheduler_Add_Task(led3,1000);
+	scheduler_Add_Task(led4,1000);
+	/**/
     /* Start Schedular */
-	schedulerInit_AndStart();
+	scheduler_Start();
 	
     while (1)
     {

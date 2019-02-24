@@ -62,7 +62,7 @@ void DIO_SetPinDirection(uint8 PinNum,uint8 PinDirection);
 void DIO_WritePin(uint8 PinNum,uint8 PinValue);
 /*To read From Specific Pin*/
 uint8 DIO_ReadPin(uint8 PinNum);
-
+uint8 DIO_TogglePin(uint8 PinNum);
 /*For Reading From Port 8-Bit
 *write PORTA_R for Port A
 *write PORTB_R for Port B
