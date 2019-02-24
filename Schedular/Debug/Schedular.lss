@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000110  00000000  00000000  00000b10  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000abf  00000000  00000000  00000c20  2**0
+  6 .debug_info   00000a6b  00000000  00000000  00000c20  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000007ed  00000000  00000000  000016df  2**0
+  7 .debug_abbrev 000007b8  00000000  00000000  0000168b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000007f1  00000000  00000000  00001ecc  2**0
+  8 .debug_line   000007d7  00000000  00000000  00001e43  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000308  00000000  00000000  000026c0  2**2
+  9 .debug_frame  00000308  00000000  00000000  0000261c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000004c6  00000000  00000000  000029c8  2**0
+ 10 .debug_str    000004c0  00000000  00000000  00002924  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000599  00000000  00000000  00002e8e  2**0
+ 11 .debug_loc    00000599  00000000  00000000  00002de4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000c0  00000000  00000000  00003427  2**0
+ 12 .debug_ranges 000000c0  00000000  00000000  0000337d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1092,8 +1092,10 @@ void scheduler_Start()
  6d8:	df 93       	push	r29
  6da:	cd b7       	in	r28, 0x3d	; 61
  6dc:	de b7       	in	r29, 0x3e	; 62
+	/*Inialize Timer*/
 	timer_init();
  6de:	0e 94 9a 04 	call	0x934	; 0x934 <timer_init>
+	/*Set Call_Back_function To The Set Flag*/
 	set_Callback_Function(set_flag);
  6e2:	88 e7       	ldi	r24, 0x78	; 120
  6e4:	93 e0       	ldi	r25, 0x03	; 3
@@ -1107,7 +1109,7 @@ void scheduler_Start()
 
 000006f0 <set_flag>:
 }
-void set_flag(void)
+void static set_flag(void)
 {
  6f0:	cf 93       	push	r28
  6f2:	df 93       	push	r29
@@ -1242,9 +1244,9 @@ void dispatcher(void)
 	{
 		/* Increment Flag */
 		NewTickFlag++;
- 7c8:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <NewTickFlag.1629>
+ 7c8:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <NewTickFlag.1627>
  7cc:	8f 5f       	subi	r24, 0xFF	; 255
- 7ce:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <NewTickFlag.1629>
+ 7ce:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <NewTickFlag.1627>
 	/*For Loop For The Tasks and Scheduale Them*/
 	for(j=ZERO;j<NUM_TASKS;j++)
  7d2:	19 82       	std	Y+1, r1	; 0x01

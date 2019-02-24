@@ -35,14 +35,16 @@ void scheduler_Init()
 
 void scheduler_Start()
 {
+	/*Inialize Timer*/
 	timer_init();
+	/*Set Call_Back_function To The Set Flag*/
 	set_Callback_Function(set_flag);
 	while(1)
 	{
 		dispatcher();
 	}
 }
-void set_flag(void)
+void static set_flag(void)
 {
 	if( flag == ZERO)
 	{
