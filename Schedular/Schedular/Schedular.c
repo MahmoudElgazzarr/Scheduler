@@ -63,20 +63,13 @@ void dispatcher(void)
 {
 	volatile static uint8 NewTickFlag = ZERO ;
 	uint32 i,j;
-/*
-// 		if (NewTickFlag == NUM_TASKS + 1 )
-// 	{
-// 			NewTickFlag = ONE;
-// 			flag = 0;
-// 	}
-*/
 	
 	if (1 == flag)
 	{
 		/* Increment Flag */
-		
-	NewTickFlag++;
+		NewTickFlag++;
 	
+		
 	for(j=0;j<NUM_TASKS;j++)
 	{
 			for(i=1;i<MAX_Periodicity;i++)
@@ -87,6 +80,10 @@ void dispatcher(void)
 			}
 		}
 	}
+		if(NewTickFlag == MAX_Periodicity)
+		{
+			NewTickFlag = 0;
+		}
 		flag = 0;
 	}
 }

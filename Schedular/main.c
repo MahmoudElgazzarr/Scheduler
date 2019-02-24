@@ -22,10 +22,10 @@ int main(void)
 	scheduler_Init();
 	
 	/*Add Tasks*/
-	scheduler_Add_Task(led1,1000);
-	scheduler_Add_Task(led2,1000);
-	scheduler_Add_Task(led3,1000);
-	scheduler_Add_Task(led4,1000);
+	scheduler_Add_Task(led1,500);
+	scheduler_Add_Task(led2,500);
+	scheduler_Add_Task(led3,500);
+	scheduler_Add_Task(led4,500);
 	/**/
     /* Start Schedular */
 	scheduler_Start();

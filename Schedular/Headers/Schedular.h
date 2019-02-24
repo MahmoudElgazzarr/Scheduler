@@ -12,7 +12,7 @@
 #define OS_TICK_INTERVAL_MSEC 1
 #define NUM_TASKS 4
 #define MAX_NUM_TASKS 9
-#define MAX_Periodicity 1000
+#define MAX_Periodicity 500
 
 typedef struct Tasks_Struct
 {
