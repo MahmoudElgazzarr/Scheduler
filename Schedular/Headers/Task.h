@@ -12,6 +12,10 @@
 
 #define ZERO 0
 #define ONE 1
+
+#define TRUE 1
+#define FALSE 0
+
 #define Task4_ID 3
 
 

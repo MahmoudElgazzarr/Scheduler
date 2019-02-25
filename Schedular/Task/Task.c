@@ -39,9 +39,9 @@ void Task4()
 
 void Task5()
 {
-	if(get_Button1_Status() == 1)
+	if(get_Button1_Status() == TRUE)
 	{
-		scheduler_Remove_Task(3);
+		scheduler_Remove_Task(Task4_ID);
 	}
 }
 

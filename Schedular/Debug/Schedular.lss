@@ -2345,12 +2345,12 @@ void Task5()
      f00:	df 93       	push	r29
      f02:	cd b7       	in	r28, 0x3d	; 61
      f04:	de b7       	in	r29, 0x3e	; 62
-	if(get_Button1_Status() == 1)
+	if(get_Button1_Status() == TRUE)
      f06:	0e 94 3e 00 	call	0x7c	; 0x7c <get_Button1_Status>
      f0a:	81 30       	cpi	r24, 0x01	; 1
      f0c:	19 f4       	brne	.+6      	; 0xf14 <Task5+0x16>
 	{
-		scheduler_Remove_Task(3);
+		scheduler_Remove_Task(Task4_ID);
      f0e:	83 e0       	ldi	r24, 0x03	; 3
      f10:	0e 94 af 04 	call	0x95e	; 0x95e <scheduler_Remove_Task>
 	}
