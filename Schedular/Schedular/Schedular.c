@@ -34,10 +34,10 @@ void scheduler_Init()
 	}
 }
 
-void scheduler_Start()
+void scheduler_Start(uint16 OS_Tick)
 {
 	/*Inialize Timer*/
-	timer_init();
+	timer_init(OS_Tick);
 	/*Set Call_Back_function To The Set Flag*/
 	set_Callback_Function(set_flag);
 	while(1)

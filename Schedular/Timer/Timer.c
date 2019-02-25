@@ -10,13 +10,16 @@
 #include "avr/interrupt.h"
 
 void (*Pointer_To_Func)(void);
-uint8 Tick;
+
+/*Global Variable To Set Timer For How Many Ticks*/
+volatile static uint16 Tick;
+volatile uint16 OS_Tick_in_Timer;
+
 /*Global Setting To Set Timer For 1 MSec on 16 MHZ Crystal*/
-
-
-void timer_init(void)
+void timer_init(uint16 OS_Tick)
 {
 	/**/
+	OS_Tick_in_Timer = OS_Tick;
 	/*Enable Global Interrupt*/
 	SREG |= (1<<IBIT);
 	/*Enable Timer 0*/
@@ -34,17 +37,12 @@ void set_Callback_Function(void (*ptr)(void))
 }
 ISR(TIMER0_COMP_vect)
 {
-	if (1 == OS_TICK_INTERVAL_MSEC)
+	Tick++;
+	if (OS_Tick_in_Timer == Tick)
 	{
+		/*Call Back Function*/
 		Pointer_To_Func();
-	}
-	if (2 == OS_TICK_INTERVAL_MSEC)
-	{
-		Tick++;
-	}
-	if(2 == Tick)
-	{
-		Tick = 0;
-		Pointer_To_Func();
+		/*Set Tick To Zero*/
+		Tick = ZERO;
 	}
 }

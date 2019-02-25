@@ -15,7 +15,7 @@ extern volatile uint8 Sec;
 
 #define OS_TICK_INTERVAL_MSEC 1
 
-void timer_init(void);
+void timer_init(uint16 OS_Tick);
 void timer_delay(uint32 n);
 void set_Callback_Function(void (*ptr)(void));
 
@@ -44,5 +44,5 @@ void set_Callback_Function(void (*ptr)(void));
 #define FOC0 7
 #define OCIE0 1
 
-
+#define ZERO 0
 #endif /* DELAY_TIMER_H_ */

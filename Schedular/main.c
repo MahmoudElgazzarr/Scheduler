@@ -6,6 +6,7 @@
  */ 
 
 #define FIVE_HUNDRED_OS_TICKS 500
+#define ONE_OS_TICK 1
 /*#include <avr/io.h>*/
 #include "DIO.h"
 #include "DIO_Definitions.h"
@@ -19,6 +20,7 @@ int main(void)
 	DIO_SetPinDirection(PIN13,OUTPUT);
 	DIO_SetPinDirection(PIN14,OUTPUT);
 	DIO_SetPinDirection(PIN15,OUTPUT);
+	
 	/*Schedular Data Structure Init*/
 	scheduler_Init();
 	
@@ -29,7 +31,7 @@ int main(void)
 	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS,1);
 	
     /* Start Schedular */
-	scheduler_Start();
+	scheduler_Start(ONE_OS_TICK);
 	
     while (1)
     {
