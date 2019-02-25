@@ -33,6 +33,7 @@ int main(void)
 	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS,1,2);
 	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS,1,3);
 	scheduler_Add_Task(Task5,FIVE_HUNDRED_OS_TICKS,1,4);
+	
     /* Start Schedular */
 	scheduler_Start(ONE_OS_TICK);
 	
