@@ -137,10 +137,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buttons\Buttons.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="DIO\DIO.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Headers\BitwiseOperation.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\Buttons.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Headers\LEDS.h">
@@ -184,6 +190,7 @@
     <Folder Include="Headers" />
     <Folder Include="DIO" />
     <Folder Include="LEDS" />
+    <Folder Include="Buttons" />
     <Folder Include="Task" />
     <Folder Include="Timer" />
     <Folder Include="Schedular" />

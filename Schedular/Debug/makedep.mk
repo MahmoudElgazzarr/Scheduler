@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+Buttons\Buttons.c
+
 DIO\DIO.c
 
 LEDS\LEDS.c

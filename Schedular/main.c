@@ -21,15 +21,18 @@ int main(void)
 	DIO_SetPinDirection(PIN14,OUTPUT);
 	DIO_SetPinDirection(PIN15,OUTPUT);
 	
+	/*Set Direction For Button */
+	DIO_SetPinDirection(PIN10,INPUT);
+	
 	/*Schedular Data Structure Init*/
 	scheduler_Init();
 	
 	/*Add Tasks*/
-	scheduler_Add_Task(Task1,FIVE_HUNDRED_OS_TICKS,4);
-	scheduler_Add_Task(Task2,FIVE_HUNDRED_OS_TICKS,3);
-	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS,2);
-	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS,1);
-	
+	scheduler_Add_Task(Task1,FIVE_HUNDRED_OS_TICKS,1,0);
+	scheduler_Add_Task(Task2,FIVE_HUNDRED_OS_TICKS,1,1);
+	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS,1,2);
+	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS,1,3);
+	scheduler_Add_Task(Task5,FIVE_HUNDRED_OS_TICKS,1,4);
     /* Start Schedular */
 	scheduler_Start(ONE_OS_TICK);
 	

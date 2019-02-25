@@ -36,6 +36,7 @@ SUBDIRS :=  \
 ../Headers \
 ../DIO \
 ../LEDS \
+../Buttons \
 ../Task \
 ../Timer \
 ../Schedular
@@ -43,6 +44,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../Buttons/Buttons.c \
 ../DIO/DIO.c \
 ../LEDS/LEDS.c \
 ../main.c \
@@ -58,6 +60,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+Buttons/Buttons.o \
 DIO/DIO.o \
 LEDS/LEDS.o \
 main.o \
@@ -66,6 +69,7 @@ Task/Task.o \
 Timer/Timer.o
 
 OBJS_AS_ARGS +=  \
+Buttons/Buttons.o \
 DIO/DIO.o \
 LEDS/LEDS.o \
 main.o \
@@ -74,6 +78,7 @@ Task/Task.o \
 Timer/Timer.o
 
 C_DEPS +=  \
+Buttons/Buttons.d \
 DIO/DIO.d \
 LEDS/LEDS.d \
 main.d \
@@ -82,6 +87,7 @@ Task/Task.d \
 Timer/Timer.d
 
 C_DEPS_AS_ARGS +=  \
+Buttons/Buttons.d \
 DIO/DIO.d \
 LEDS/LEDS.d \
 main.d \
@@ -103,6 +109,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+Buttons/Buttons.o: ../Buttons/Buttons.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../Headers" -I"../DIO" -I"../Schedular" -I"../Timer" -I"../Task"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 DIO/DIO.o: ../DIO/DIO.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0

@@ -12,8 +12,7 @@
 
 #define ZERO 0
 #define ONE 1
-
-
+#define Task4_ID 3
 
 
 
@@ -22,6 +21,7 @@ void Task1();
 void Task2();
 void Task3();
 void Task4();
+void Task5();
 
 
 #endif /* TASK_H_ */

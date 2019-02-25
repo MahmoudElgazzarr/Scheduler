@@ -9,13 +9,16 @@ Allocating common symbols
 Common symbol       size              file
 
 Pointer_To_Func     0x2               Timer/Timer.o
-Tasks_Arr           0x63              Schedular/Schedular.o
+Tasks_Arr           0x6c              Schedular/Schedular.o
 OS_Tick_in_Timer    0x2               Timer/Timer.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
+ .text          0x00000000        0x0 Buttons/Buttons.o
+ .data          0x00000000        0x0 Buttons/Buttons.o
+ .bss           0x00000000        0x0 Buttons/Buttons.o
  .text          0x00000000        0x0 DIO/DIO.o
  .data          0x00000000        0x0 DIO/DIO.o
  .bss           0x00000000        0x0 DIO/DIO.o
@@ -86,6 +89,7 @@ user_signatures  0x00850000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
+LOAD Buttons/Buttons.o
 LOAD DIO/DIO.o
 LOAD LEDS/LEDS.o
 LOAD main.o
@@ -199,7 +203,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xd76
+.text           0x00000000     0x1046
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
                 0x00000000                __vector_default
@@ -278,68 +282,78 @@ END GROUP
                 0x00000078                __vector_20
                 0x0000007c                . = ALIGN (0x2)
  *(.text.*)
+ .text.get_Button1_Status
+                0x0000007c       0x1c Buttons/Buttons.o
+                0x0000007c                get_Button1_Status
  .text.DIO_WritePin
-                0x0000007c      0x1e0 DIO/DIO.o
-                0x0000007c                DIO_WritePin
+                0x00000098      0x1e0 DIO/DIO.o
+                0x00000098                DIO_WritePin
  .text.DIO_SetPinDirection
-                0x0000025c      0x1e0 DIO/DIO.o
-                0x0000025c                DIO_SetPinDirection
+                0x00000278      0x1e0 DIO/DIO.o
+                0x00000278                DIO_SetPinDirection
  .text.DIO_ReadPin
-                0x0000043c      0x13a DIO/DIO.o
-                0x0000043c                DIO_ReadPin
+                0x00000458      0x13a DIO/DIO.o
+                0x00000458                DIO_ReadPin
  .text.DIO_TogglePin
-                0x00000576       0x32 DIO/DIO.o
-                0x00000576                DIO_TogglePin
+                0x00000592       0x32 DIO/DIO.o
+                0x00000592                DIO_TogglePin
  .text.Led_One_Toggle
-                0x000005a8       0x16 LEDS/LEDS.o
-                0x000005a8                Led_One_Toggle
+                0x000005c4       0x16 LEDS/LEDS.o
+                0x000005c4                Led_One_Toggle
  .text.Led_Two_Toggle
-                0x000005be       0x16 LEDS/LEDS.o
-                0x000005be                Led_Two_Toggle
+                0x000005da       0x16 LEDS/LEDS.o
+                0x000005da                Led_Two_Toggle
  .text.Led_Three_Toggle
-                0x000005d4       0x16 LEDS/LEDS.o
-                0x000005d4                Led_Three_Toggle
+                0x000005f0       0x16 LEDS/LEDS.o
+                0x000005f0                Led_Three_Toggle
  .text.Led_Four_Toggle
-                0x000005ea       0x16 LEDS/LEDS.o
-                0x000005ea                Led_Four_Toggle
- .text.main     0x00000600       0x7e main.o
-                0x00000600                main
+                0x00000606       0x16 LEDS/LEDS.o
+                0x00000606                Led_Four_Toggle
+ .text.main     0x0000061c       0xa4 main.o
+                0x0000061c                main
  .text.scheduler_Init
-                0x0000067e       0xbc Schedular/Schedular.o
-                0x0000067e                scheduler_Init
+                0x000006c0       0xf2 Schedular/Schedular.o
+                0x000006c0                scheduler_Init
  .text.scheduler_Start
-                0x0000073a       0x24 Schedular/Schedular.o
-                0x0000073a                scheduler_Start
+                0x000007b2       0x24 Schedular/Schedular.o
+                0x000007b2                scheduler_Start
  .text.set_flag
-                0x0000075e       0x1e Schedular/Schedular.o
+                0x000007d6       0x1e Schedular/Schedular.o
  .text.scheduler_Add_Task
-                0x0000077c      0x356 Schedular/Schedular.o
-                0x0000077c                scheduler_Add_Task
+                0x000007f4      0x16a Schedular/Schedular.o
+                0x000007f4                scheduler_Add_Task
+ .text.scheduler_Remove_Task
+                0x0000095e       0x7e Schedular/Schedular.o
+                0x0000095e                scheduler_Remove_Task
+ .text.Swap_Tasks
+                0x000009dc      0x34e Schedular/Schedular.o
  .text.dispatcher
-                0x00000ad2      0x12a Schedular/Schedular.o
-                0x00000ad2                dispatcher
- .text.Task1    0x00000bfc       0x14 Task/Task.o
-                0x00000bfc                Task1
- .text.Task2    0x00000c10       0x14 Task/Task.o
-                0x00000c10                Task2
- .text.Task3    0x00000c24       0x14 Task/Task.o
-                0x00000c24                Task3
- .text.Task4    0x00000c38       0x14 Task/Task.o
-                0x00000c38                Task4
+                0x00000d2a      0x184 Schedular/Schedular.o
+                0x00000d2a                dispatcher
+ .text.Task1    0x00000eae       0x14 Task/Task.o
+                0x00000eae                Task1
+ .text.Task2    0x00000ec2       0x14 Task/Task.o
+                0x00000ec2                Task2
+ .text.Task3    0x00000ed6       0x14 Task/Task.o
+                0x00000ed6                Task3
+ .text.Task4    0x00000eea       0x14 Task/Task.o
+                0x00000eea                Task4
+ .text.Task5    0x00000efe       0x1e Task/Task.o
+                0x00000efe                Task5
  .text.timer_init
-                0x00000c4c       0x6e Timer/Timer.o
-                0x00000c4c                timer_init
+                0x00000f1c       0x6e Timer/Timer.o
+                0x00000f1c                timer_init
  .text.set_Callback_Function
-                0x00000cba       0x26 Timer/Timer.o
-                0x00000cba                set_Callback_Function
+                0x00000f8a       0x26 Timer/Timer.o
+                0x00000f8a                set_Callback_Function
  .text.__vector_10
-                0x00000ce0       0x92 Timer/Timer.o
-                0x00000ce0                __vector_10
-                0x00000d72                . = ALIGN (0x2)
+                0x00000fb0       0x92 Timer/Timer.o
+                0x00000fb0                __vector_10
+                0x00001042                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000d72        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000d72                _exit
-                0x00000d72                exit
+ .fini9         0x00001042        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001042                _exit
+                0x00001042                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -358,11 +372,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000d72        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001042        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000d76                _etext = .
+                0x00001046                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000d76
+.data           0x00800060        0x0 load address 0x00001046
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -374,31 +388,31 @@ END GROUP
                 0x00800060                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00800060       0x6c
+.bss            0x00800060       0x75
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.flag      0x00800060        0x1 Schedular/Schedular.o
                 0x00800060                flag
  .bss.Last      0x00800061        0x1 Schedular/Schedular.o
- .bss.NewTickFlag.1640
+ .bss.NewTickFlag.1658
                 0x00800062        0x1 Schedular/Schedular.o
  .bss.Tick      0x00800063        0x2 Timer/Timer.o
  *(COMMON)
- COMMON         0x00800065       0x63 Schedular/Schedular.o
+ COMMON         0x00800065       0x6c Schedular/Schedular.o
                 0x00800065                Tasks_Arr
- COMMON         0x008000c8        0x4 Timer/Timer.o
-                0x008000c8                Pointer_To_Func
-                0x008000ca                OS_Tick_in_Timer
-                0x008000cc                PROVIDE (__bss_end, .)
-                0x00000d76                __data_load_start = LOADADDR (.data)
-                0x00000d76                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008000d1        0x4 Timer/Timer.o
+                0x008000d1                Pointer_To_Func
+                0x008000d3                OS_Tick_in_Timer
+                0x008000d5                PROVIDE (__bss_end, .)
+                0x00001046                __data_load_start = LOADADDR (.data)
+                0x00001046                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000cc        0x0
+.noinit         0x008000d5        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008000cc                _end = .
+                0x008000d5                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -440,8 +454,9 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 DIO/DIO.o
+ .comment       0x00000000       0x30 Buttons/Buttons.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 DIO/DIO.o
  .comment       0x00000030       0x31 LEDS/LEDS.o
  .comment       0x00000030       0x31 main.o
  .comment       0x00000030       0x31 Schedular/Schedular.o
@@ -468,87 +483,96 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x148
+.debug_aranges  0x00000000      0x180
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x48 DIO/DIO.o
+                0x00000000       0x20 Buttons/Buttons.o
  .debug_aranges
-                0x00000048       0x38 LEDS/LEDS.o
+                0x00000020       0x48 DIO/DIO.o
  .debug_aranges
-                0x00000080       0x20 main.o
+                0x00000068       0x38 LEDS/LEDS.o
  .debug_aranges
-                0x000000a0       0x40 Schedular/Schedular.o
+                0x000000a0       0x20 main.o
  .debug_aranges
-                0x000000e0       0x38 Task/Task.o
+                0x000000c0       0x50 Schedular/Schedular.o
  .debug_aranges
-                0x00000118       0x30 Timer/Timer.o
+                0x00000110       0x40 Task/Task.o
+ .debug_aranges
+                0x00000150       0x30 Timer/Timer.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xb78
+.debug_info     0x00000000      0xcb6
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_info    0x000004e6      0x18b DIO/DIO.o
- .debug_info    0x00000671       0xac LEDS/LEDS.o
- .debug_info    0x0000071d       0x75 main.o
- .debug_info    0x00000792      0x22d Schedular/Schedular.o
- .debug_info    0x000009bf       0x7e Task/Task.o
- .debug_info    0x00000a3d      0x13b Timer/Timer.o
+ .debug_info    0x000004e6       0x87 Buttons/Buttons.o
+ .debug_info    0x0000056d      0x18b DIO/DIO.o
+ .debug_info    0x000006f8       0xac LEDS/LEDS.o
+ .debug_info    0x000007a4       0x75 main.o
+ .debug_info    0x00000819      0x2a5 Schedular/Schedular.o
+ .debug_info    0x00000abe       0xbd Task/Task.o
+ .debug_info    0x00000b7b      0x13b Timer/Timer.o
 
-.debug_abbrev   0x00000000      0x7dd
+.debug_abbrev   0x00000000      0x88d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_abbrev  0x000004a3       0xb8 DIO/DIO.o
- .debug_abbrev  0x0000055b       0x39 LEDS/LEDS.o
- .debug_abbrev  0x00000594       0x46 main.o
- .debug_abbrev  0x000005da      0x117 Schedular/Schedular.o
- .debug_abbrev  0x000006f1       0x2c Task/Task.o
- .debug_abbrev  0x0000071d       0xc0 Timer/Timer.o
+ .debug_abbrev  0x000004a3       0x55 Buttons/Buttons.o
+ .debug_abbrev  0x000004f8       0xb8 DIO/DIO.o
+ .debug_abbrev  0x000005b0       0x39 LEDS/LEDS.o
+ .debug_abbrev  0x000005e9       0x46 main.o
+ .debug_abbrev  0x0000062f      0x167 Schedular/Schedular.o
+ .debug_abbrev  0x00000796       0x37 Task/Task.o
+ .debug_abbrev  0x000007cd       0xc0 Timer/Timer.o
 
-.debug_line     0x00000000      0x8ff
+.debug_line     0x00000000      0xa21
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_line    0x00000115      0x2eb DIO/DIO.o
- .debug_line    0x00000400       0x9c LEDS/LEDS.o
- .debug_line    0x0000049c       0x7f main.o
- .debug_line    0x0000051b      0x21e Schedular/Schedular.o
- .debug_line    0x00000739       0x9c Task/Task.o
- .debug_line    0x000007d5      0x12a Timer/Timer.o
+ .debug_line    0x00000115       0x6a Buttons/Buttons.o
+ .debug_line    0x0000017f      0x2eb DIO/DIO.o
+ .debug_line    0x0000046a       0x9c LEDS/LEDS.o
+ .debug_line    0x00000506       0x8b main.o
+ .debug_line    0x00000591      0x2a8 Schedular/Schedular.o
+ .debug_line    0x00000839       0xbe Task/Task.o
+ .debug_line    0x000008f7      0x12a Timer/Timer.o
 
-.debug_frame    0x00000000      0x39c
+.debug_frame    0x00000000      0x43c
  *(.debug_frame)
- .debug_frame   0x00000000       0xd4 DIO/DIO.o
- .debug_frame   0x000000d4       0x94 LEDS/LEDS.o
- .debug_frame   0x00000168       0x34 main.o
- .debug_frame   0x0000019c       0xb4 Schedular/Schedular.o
- .debug_frame   0x00000250       0x94 Task/Task.o
- .debug_frame   0x000002e4       0xb8 Timer/Timer.o
+ .debug_frame   0x00000000       0x34 Buttons/Buttons.o
+ .debug_frame   0x00000034       0xd4 DIO/DIO.o
+ .debug_frame   0x00000108       0x94 LEDS/LEDS.o
+ .debug_frame   0x0000019c       0x38 main.o
+ .debug_frame   0x000001d4       0xfc Schedular/Schedular.o
+ .debug_frame   0x000002d0       0xb4 Task/Task.o
+ .debug_frame   0x00000384       0xb8 Timer/Timer.o
 
-.debug_str      0x00000000      0x54e
+.debug_str      0x00000000      0x59d
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32a/avr5/crtatmega32a.o
- .debug_str     0x00000196      0x19a DIO/DIO.o
+ .debug_str     0x00000196      0x144 Buttons/Buttons.o
+                                0x16b (size before relaxing)
+ .debug_str     0x000002da       0x7e DIO/DIO.o
                                 0x1ce (size before relaxing)
- .debug_str     0x00000330       0x4e LEDS/LEDS.o
+ .debug_str     0x00000358       0x4e LEDS/LEDS.o
                                 0x17e (size before relaxing)
- .debug_str     0x0000037e       0x11 main.o
+ .debug_str     0x000003a6       0x11 main.o
                                 0x141 (size before relaxing)
- .debug_str     0x0000038f      0x10c Schedular/Schedular.o
-                                0x258 (size before relaxing)
- .debug_str     0x0000049b       0x27 Task/Task.o
-                                0x105 (size before relaxing)
- .debug_str     0x000004c2       0x8c Timer/Timer.o
+ .debug_str     0x000003b7      0x12d Schedular/Schedular.o
+                                0x279 (size before relaxing)
+ .debug_str     0x000004e4       0x2d Task/Task.o
+                                0x15d (size before relaxing)
+ .debug_str     0x00000511       0x8c Timer/Timer.o
                                 0x1e3 (size before relaxing)
 
-.debug_loc      0x00000000      0x69e
+.debug_loc      0x00000000      0x7ca
  *(.debug_loc)
- .debug_loc     0x00000000      0x1b0 DIO/DIO.o
- .debug_loc     0x000001b0       0xec LEDS/LEDS.o
- .debug_loc     0x0000029c       0x3b main.o
- .debug_loc     0x000002d7      0x15a Schedular/Schedular.o
- .debug_loc     0x00000431       0xec Task/Task.o
- .debug_loc     0x0000051d      0x181 Timer/Timer.o
+ .debug_loc     0x00000000       0x48 Buttons/Buttons.o
+ .debug_loc     0x00000048      0x1b0 DIO/DIO.o
+ .debug_loc     0x000001f8       0xec LEDS/LEDS.o
+ .debug_loc     0x000002e4       0x48 main.o
+ .debug_loc     0x0000032c      0x1f6 Schedular/Schedular.o
+ .debug_loc     0x00000522      0x127 Task/Task.o
+ .debug_loc     0x00000649      0x181 Timer/Timer.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -568,14 +592,15 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xe8
+.debug_ranges   0x00000000      0x110
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x38 DIO/DIO.o
- .debug_ranges  0x00000038       0x28 LEDS/LEDS.o
- .debug_ranges  0x00000060       0x10 main.o
- .debug_ranges  0x00000070       0x30 Schedular/Schedular.o
- .debug_ranges  0x000000a0       0x28 Task/Task.o
- .debug_ranges  0x000000c8       0x20 Timer/Timer.o
+ .debug_ranges  0x00000000       0x10 Buttons/Buttons.o
+ .debug_ranges  0x00000010       0x38 DIO/DIO.o
+ .debug_ranges  0x00000048       0x28 LEDS/LEDS.o
+ .debug_ranges  0x00000070       0x10 main.o
+ .debug_ranges  0x00000080       0x40 Schedular/Schedular.o
+ .debug_ranges  0x000000c0       0x30 Task/Task.o
+ .debug_ranges  0x000000f0       0x20 Timer/Timer.o
 
 .debug_macro
  *(.debug_macro)

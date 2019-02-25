@@ -6,8 +6,11 @@
  */ 
 
 /*We Include Leds Module in App*/
-
+#include "Types.h"
 #include "LEDS.h"
+#include "Buttons.h"
+#include "Schedular.h"
+#include "Task.h"
 
 /*Task 1*/	
 void Task1()
@@ -32,6 +35,14 @@ void Task4()
 {
 	/*Toggle The Led 4*/
 	Led_Four_Toggle();
+}
+
+void Task5()
+{
+	if(get_Button1_Status() == 1)
+	{
+		scheduler_Remove_Task(3);
+	}
 }
 
 
