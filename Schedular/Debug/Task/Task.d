@@ -1,10 +1,3 @@
-Task/Task.d Task/Task.o: ../Task/Task.c ../Headers/Task.h \
- ../Headers/DIO_Definitions.h ../Headers/Types.h ../Headers/DIO.h
+Task/Task.d Task/Task.o: ../Task/Task.c ../Headers/LEDS.h
 
-../Headers/Task.h:
-
-../Headers/DIO_Definitions.h:
-
-../Headers/Types.h:
-
-../Headers/DIO.h:
+../Headers/LEDS.h:

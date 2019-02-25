@@ -35,6 +35,7 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../Headers \
 ../DIO \
+../LEDS \
 ../Task \
 ../Timer \
 ../Schedular
@@ -43,6 +44,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../DIO/DIO.c \
+../LEDS/LEDS.c \
 ../main.c \
 ../Schedular/Schedular.c \
 ../Task/Task.c \
@@ -57,6 +59,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 DIO/DIO.o \
+LEDS/LEDS.o \
 main.o \
 Schedular/Schedular.o \
 Task/Task.o \
@@ -64,6 +67,7 @@ Timer/Timer.o
 
 OBJS_AS_ARGS +=  \
 DIO/DIO.o \
+LEDS/LEDS.o \
 main.o \
 Schedular/Schedular.o \
 Task/Task.o \
@@ -71,6 +75,7 @@ Timer/Timer.o
 
 C_DEPS +=  \
 DIO/DIO.d \
+LEDS/LEDS.d \
 main.d \
 Schedular/Schedular.d \
 Task/Task.d \
@@ -78,6 +83,7 @@ Timer/Timer.d
 
 C_DEPS_AS_ARGS +=  \
 DIO/DIO.d \
+LEDS/LEDS.d \
 main.d \
 Schedular/Schedular.d \
 Task/Task.d \
@@ -98,6 +104,13 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 DIO/DIO.o: ../DIO/DIO.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../Headers" -I"../DIO" -I"../Schedular" -I"../Timer" -I"../Task"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+LEDS/LEDS.o: ../LEDS/LEDS.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../Headers" -I"../DIO" -I"../Schedular" -I"../Timer" -I"../Task"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega32a" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
