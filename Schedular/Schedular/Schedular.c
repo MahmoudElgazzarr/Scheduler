@@ -52,8 +52,12 @@ void static set_flag(void)
 		flag = ONE;
 	}
 }
-uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity)
+uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity,uint8 priority)
 {
+		
+	/*Index Parmater*/
+	uint8 index,indexx;
+	Tasks_T Swap_Structure;
 	/*If Num of Tasks is Larger Than Max Number Of Tasks return False*/
 	if( NUM_TASKS >= MAX_NUM_TASKS )
 	{
@@ -69,6 +73,35 @@ uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity)
 	Tasks_Arr[Last].Task_Periodicity = Periodicity;
 	Tasks_Arr[Last].Remaining_Ticks = Periodicity;
 	Last++;
+	/*Sort The Array From Low To High Depend on Priority*/
+	
+	for(index = ZERO; index < NUM_TASKS;index++)
+	{
+		for (indexx = ZERO; indexx < NUM_TASKS - ONE;indexx++)
+		{
+			/*if priority is Inverted*/
+			if ( Tasks_Arr[indexx].Task_Priority < Tasks_Arr[indexx + ONE].Task_Priority )
+			{
+				/*Save Tasks_Array[indexx]*/
+				Swap_Structure.Task_Priority = Tasks_Arr[indexx].Task_Priority;
+				Swap_Structure.Task_Periodicity = Tasks_Arr[indexx].Task_Periodicity;
+				Swap_Structure.Remaining_Ticks = Tasks_Arr[indexx].Remaining_Ticks;
+				Swap_Structure.Tasks_Ptr = Tasks_Arr[indexx].Tasks_Ptr;
+				
+				/* Swap Tasks*/
+				Tasks_Arr[indexx].Remaining_Ticks = Tasks_Arr[indexx + 1].Remaining_Ticks;
+				Tasks_Arr[indexx].Task_Priority = Tasks_Arr[indexx + 1].Task_Priority;
+				Tasks_Arr[indexx].Task_Periodicity = Tasks_Arr[indexx + 1].Task_Periodicity;
+				Tasks_Arr[indexx].Tasks_Ptr = Tasks_Arr[indexx+1].Tasks_Ptr;
+				
+				/*Swap Tasks_Arr[indexx+1]*/
+				Tasks_Arr[indexx + 1].Remaining_Ticks = Swap_Structure.Remaining_Ticks;
+				Tasks_Arr[indexx + 1].Task_Priority = Swap_Structure.Task_Priority;
+				Tasks_Arr[indexx + 1].Task_Periodicity = Swap_Structure.Task_Periodicity;
+				Tasks_Arr[indexx+1].Tasks_Ptr = Swap_Structure.Tasks_Ptr;
+			}
+		}
+	}
 	return TRUE;
 	}
 }

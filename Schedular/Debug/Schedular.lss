@@ -3,31 +3,31 @@ Schedular.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000a84  00000000  00000000  00000074  2**1
+  0 .text         00000d3a  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  00000af8  2**0
+  1 .data         00000000  00800060  00800060  00000dae  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000069  00800060  00800060  00000af8  2**0
+  2 .bss          00000069  00800060  00800060  00000dae  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000af8  2**0
+  3 .comment      00000030  00000000  00000000  00000dae  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000b28  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000de0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000148  00000000  00000000  00000b64  2**0
+  5 .debug_aranges 00000148  00000000  00000000  00000e1c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000b0b  00000000  00000000  00000cac  2**0
+  6 .debug_info   00000b25  00000000  00000000  00000f64  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000804  00000000  00000000  000017b7  2**0
+  7 .debug_abbrev 000007e6  00000000  00000000  00001a89  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000889  00000000  00000000  00001fbb  2**0
+  8 .debug_line   000008f9  00000000  00000000  0000226f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000039c  00000000  00000000  00002844  2**2
+  9 .debug_frame  0000039c  00000000  00000000  00002b68  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000050e  00000000  00000000  00002be0  2**0
+ 10 .debug_str    00000533  00000000  00000000  00002f04  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000692  00000000  00000000  000030ee  2**0
+ 11 .debug_loc    00000684  00000000  00000000  00003437  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000e8  00000000  00000000  00003780  2**0
+ 12 .debug_ranges 000000e8  00000000  00000000  00003abb  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -43,7 +43,7 @@ Disassembly of section .text:
   1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  28:	0c 94 03 05 	jmp	0xa06	; 0xa06 <__vector_10>
+  28:	0c 94 5e 06 	jmp	0xcbc	; 0xcbc <__vector_10>
   2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -77,7 +77,7 @@ Disassembly of section .text:
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
   70:	0e 94 00 03 	call	0x600	; 0x600 <main>
-  74:	0c 94 40 05 	jmp	0xa80	; 0xa80 <_exit>
+  74:	0c 94 9b 06 	jmp	0xd36	; 0xd36 <_exit>
 
 00000078 <__bad_interrupt>:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -964,759 +964,1138 @@ int main(void)
 {
  600:	cf 93       	push	r28
  602:	df 93       	push	r29
- 604:	1f 92       	push	r1
- 606:	cd b7       	in	r28, 0x3d	; 61
- 608:	de b7       	in	r29, 0x3e	; 62
+ 604:	cd b7       	in	r28, 0x3d	; 61
+ 606:	de b7       	in	r29, 0x3e	; 62
 	/*Set Leds As OUTPUt*/
 	DIO_SetPinDirection(PIN12,OUTPUT);
- 60a:	61 e0       	ldi	r22, 0x01	; 1
- 60c:	8c e0       	ldi	r24, 0x0C	; 12
- 60e:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
+ 608:	61 e0       	ldi	r22, 0x01	; 1
+ 60a:	8c e0       	ldi	r24, 0x0C	; 12
+ 60c:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
 	DIO_SetPinDirection(PIN13,OUTPUT);
- 612:	61 e0       	ldi	r22, 0x01	; 1
- 614:	8d e0       	ldi	r24, 0x0D	; 13
- 616:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
+ 610:	61 e0       	ldi	r22, 0x01	; 1
+ 612:	8d e0       	ldi	r24, 0x0D	; 13
+ 614:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
 	DIO_SetPinDirection(PIN14,OUTPUT);
- 61a:	61 e0       	ldi	r22, 0x01	; 1
- 61c:	8e e0       	ldi	r24, 0x0E	; 14
- 61e:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
+ 618:	61 e0       	ldi	r22, 0x01	; 1
+ 61a:	8e e0       	ldi	r24, 0x0E	; 14
+ 61c:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
 	DIO_SetPinDirection(PIN15,OUTPUT);
- 622:	61 e0       	ldi	r22, 0x01	; 1
- 624:	8f e0       	ldi	r24, 0x0F	; 15
- 626:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
+ 620:	61 e0       	ldi	r22, 0x01	; 1
+ 622:	8f e0       	ldi	r24, 0x0F	; 15
+ 624:	0e 94 2e 01 	call	0x25c	; 0x25c <DIO_SetPinDirection>
 	/*Schedular Data Structure Init*/
 	scheduler_Init();
- 62a:	0e 94 3b 03 	call	0x676	; 0x676 <scheduler_Init>
+ 628:	0e 94 3d 03 	call	0x67a	; 0x67a <scheduler_Init>
 	
 	/*Add Tasks*/
-	uint8 return_value = scheduler_Add_Task(Task1,FIVE_HUNDRED_OS_TICKS);
+	scheduler_Add_Task(Task1,FIVE_HUNDRED_OS_TICKS,4);
+ 62c:	24 e0       	ldi	r18, 0x04	; 4
  62e:	44 ef       	ldi	r20, 0xF4	; 244
  630:	51 e0       	ldi	r21, 0x01	; 1
  632:	60 e0       	ldi	r22, 0x00	; 0
  634:	70 e0       	ldi	r23, 0x00	; 0
- 636:	8c e9       	ldi	r24, 0x9C	; 156
- 638:	94 e0       	ldi	r25, 0x04	; 4
- 63a:	0e 94 b5 03 	call	0x76a	; 0x76a <scheduler_Add_Task>
- 63e:	89 83       	std	Y+1, r24	; 0x01
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/ 
-	}
-	scheduler_Add_Task(Task2,FIVE_HUNDRED_OS_TICKS);
+ 636:	87 ef       	ldi	r24, 0xF7	; 247
+ 638:	95 e0       	ldi	r25, 0x05	; 5
+ 63a:	0e 94 b7 03 	call	0x76e	; 0x76e <scheduler_Add_Task>
+	scheduler_Add_Task(Task2,FIVE_HUNDRED_OS_TICKS,3);
+ 63e:	23 e0       	ldi	r18, 0x03	; 3
  640:	44 ef       	ldi	r20, 0xF4	; 244
  642:	51 e0       	ldi	r21, 0x01	; 1
  644:	60 e0       	ldi	r22, 0x00	; 0
  646:	70 e0       	ldi	r23, 0x00	; 0
- 648:	86 ea       	ldi	r24, 0xA6	; 166
- 64a:	94 e0       	ldi	r25, 0x04	; 4
- 64c:	0e 94 b5 03 	call	0x76a	; 0x76a <scheduler_Add_Task>
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/
-	}
-	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS);
- 650:	44 ef       	ldi	r20, 0xF4	; 244
- 652:	51 e0       	ldi	r21, 0x01	; 1
- 654:	60 e0       	ldi	r22, 0x00	; 0
- 656:	70 e0       	ldi	r23, 0x00	; 0
- 658:	80 eb       	ldi	r24, 0xB0	; 176
- 65a:	94 e0       	ldi	r25, 0x04	; 4
- 65c:	0e 94 b5 03 	call	0x76a	; 0x76a <scheduler_Add_Task>
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/
-	}
-	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS);
- 660:	44 ef       	ldi	r20, 0xF4	; 244
- 662:	51 e0       	ldi	r21, 0x01	; 1
- 664:	60 e0       	ldi	r22, 0x00	; 0
- 666:	70 e0       	ldi	r23, 0x00	; 0
- 668:	8a eb       	ldi	r24, 0xBA	; 186
- 66a:	94 e0       	ldi	r25, 0x04	; 4
- 66c:	0e 94 b5 03 	call	0x76a	; 0x76a <scheduler_Add_Task>
-	{
-		/*Do Something*/
-	}
+ 648:	81 e0       	ldi	r24, 0x01	; 1
+ 64a:	96 e0       	ldi	r25, 0x06	; 6
+ 64c:	0e 94 b7 03 	call	0x76e	; 0x76e <scheduler_Add_Task>
+	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS,2);
+ 650:	22 e0       	ldi	r18, 0x02	; 2
+ 652:	44 ef       	ldi	r20, 0xF4	; 244
+ 654:	51 e0       	ldi	r21, 0x01	; 1
+ 656:	60 e0       	ldi	r22, 0x00	; 0
+ 658:	70 e0       	ldi	r23, 0x00	; 0
+ 65a:	8b e0       	ldi	r24, 0x0B	; 11
+ 65c:	96 e0       	ldi	r25, 0x06	; 6
+ 65e:	0e 94 b7 03 	call	0x76e	; 0x76e <scheduler_Add_Task>
+	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS,1);
+ 662:	21 e0       	ldi	r18, 0x01	; 1
+ 664:	44 ef       	ldi	r20, 0xF4	; 244
+ 666:	51 e0       	ldi	r21, 0x01	; 1
+ 668:	60 e0       	ldi	r22, 0x00	; 0
+ 66a:	70 e0       	ldi	r23, 0x00	; 0
+ 66c:	85 e1       	ldi	r24, 0x15	; 21
+ 66e:	96 e0       	ldi	r25, 0x06	; 6
+ 670:	0e 94 b7 03 	call	0x76e	; 0x76e <scheduler_Add_Task>
 	
     /* Start Schedular */
 	scheduler_Start();
- 670:	0e 94 99 03 	call	0x732	; 0x732 <scheduler_Start>
+ 674:	0e 94 9b 03 	call	0x736	; 0x736 <scheduler_Start>
 	
     while (1)
     {
 		
     }
- 674:	ff cf       	rjmp	.-2      	; 0x674 <main+0x74>
+ 678:	ff cf       	rjmp	.-2      	; 0x678 <main+0x78>
 
-00000676 <scheduler_Init>:
+0000067a <scheduler_Init>:
 /*Create Array of Structure To the Tasks*/
 
 Tasks_T Tasks_Arr[MAX_NUM_TASKS];
 
 void scheduler_Init()
 {
- 676:	cf 93       	push	r28
- 678:	df 93       	push	r29
- 67a:	00 d0       	rcall	.+0      	; 0x67c <scheduler_Init+0x6>
- 67c:	00 d0       	rcall	.+0      	; 0x67e <scheduler_Init+0x8>
- 67e:	cd b7       	in	r28, 0x3d	; 61
- 680:	de b7       	in	r29, 0x3e	; 62
+ 67a:	cf 93       	push	r28
+ 67c:	df 93       	push	r29
+ 67e:	00 d0       	rcall	.+0      	; 0x680 <scheduler_Init+0x6>
+ 680:	00 d0       	rcall	.+0      	; 0x682 <scheduler_Init+0x8>
+ 682:	cd b7       	in	r28, 0x3d	; 61
+ 684:	de b7       	in	r29, 0x3e	; 62
 	uint32 i;
 	/*Inialize array of structure With Zero*/
 	for(i=ZERO;i<NUM_TASKS;i++)
- 682:	19 82       	std	Y+1, r1	; 0x01
- 684:	1a 82       	std	Y+2, r1	; 0x02
- 686:	1b 82       	std	Y+3, r1	; 0x03
- 688:	1c 82       	std	Y+4, r1	; 0x04
- 68a:	42 c0       	rjmp	.+132    	; 0x710 <scheduler_Init+0x9a>
+ 686:	19 82       	std	Y+1, r1	; 0x01
+ 688:	1a 82       	std	Y+2, r1	; 0x02
+ 68a:	1b 82       	std	Y+3, r1	; 0x03
+ 68c:	1c 82       	std	Y+4, r1	; 0x04
+ 68e:	42 c0       	rjmp	.+132    	; 0x714 <scheduler_Init+0x9a>
 	{
 		Tasks_Arr[i].Tasks_Ptr = NULL;
- 68c:	29 81       	ldd	r18, Y+1	; 0x01
- 68e:	3a 81       	ldd	r19, Y+2	; 0x02
- 690:	4b e0       	ldi	r20, 0x0B	; 11
- 692:	42 9f       	mul	r20, r18
- 694:	c0 01       	movw	r24, r0
- 696:	43 9f       	mul	r20, r19
- 698:	90 0d       	add	r25, r0
- 69a:	11 24       	eor	r1, r1
- 69c:	8d 59       	subi	r24, 0x9D	; 157
- 69e:	9f 4f       	sbci	r25, 0xFF	; 255
- 6a0:	fc 01       	movw	r30, r24
- 6a2:	11 82       	std	Z+1, r1	; 0x01
- 6a4:	10 82       	st	Z, r1
+ 690:	29 81       	ldd	r18, Y+1	; 0x01
+ 692:	3a 81       	ldd	r19, Y+2	; 0x02
+ 694:	4b e0       	ldi	r20, 0x0B	; 11
+ 696:	42 9f       	mul	r20, r18
+ 698:	c0 01       	movw	r24, r0
+ 69a:	43 9f       	mul	r20, r19
+ 69c:	90 0d       	add	r25, r0
+ 69e:	11 24       	eor	r1, r1
+ 6a0:	8d 59       	subi	r24, 0x9D	; 157
+ 6a2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 6a4:	fc 01       	movw	r30, r24
+ 6a6:	11 82       	std	Z+1, r1	; 0x01
+ 6a8:	10 82       	st	Z, r1
 		Tasks_Arr[i].Task_Priority =ZERO;
- 6a6:	29 81       	ldd	r18, Y+1	; 0x01
- 6a8:	3a 81       	ldd	r19, Y+2	; 0x02
- 6aa:	4b e0       	ldi	r20, 0x0B	; 11
- 6ac:	42 9f       	mul	r20, r18
- 6ae:	c0 01       	movw	r24, r0
- 6b0:	43 9f       	mul	r20, r19
- 6b2:	90 0d       	add	r25, r0
- 6b4:	11 24       	eor	r1, r1
- 6b6:	86 59       	subi	r24, 0x96	; 150
- 6b8:	9f 4f       	sbci	r25, 0xFF	; 255
- 6ba:	fc 01       	movw	r30, r24
- 6bc:	10 82       	st	Z, r1
- 6be:	11 82       	std	Z+1, r1	; 0x01
- 6c0:	12 82       	std	Z+2, r1	; 0x02
- 6c2:	13 82       	std	Z+3, r1	; 0x03
+ 6aa:	29 81       	ldd	r18, Y+1	; 0x01
+ 6ac:	3a 81       	ldd	r19, Y+2	; 0x02
+ 6ae:	4b e0       	ldi	r20, 0x0B	; 11
+ 6b0:	42 9f       	mul	r20, r18
+ 6b2:	c0 01       	movw	r24, r0
+ 6b4:	43 9f       	mul	r20, r19
+ 6b6:	90 0d       	add	r25, r0
+ 6b8:	11 24       	eor	r1, r1
+ 6ba:	86 59       	subi	r24, 0x96	; 150
+ 6bc:	9f 4f       	sbci	r25, 0xFF	; 255
+ 6be:	fc 01       	movw	r30, r24
+ 6c0:	10 82       	st	Z, r1
+ 6c2:	11 82       	std	Z+1, r1	; 0x01
+ 6c4:	12 82       	std	Z+2, r1	; 0x02
+ 6c6:	13 82       	std	Z+3, r1	; 0x03
 		Tasks_Arr[i].Task_Periodicity = ZERO;
- 6c4:	29 81       	ldd	r18, Y+1	; 0x01
- 6c6:	3a 81       	ldd	r19, Y+2	; 0x02
- 6c8:	4b e0       	ldi	r20, 0x0B	; 11
- 6ca:	42 9f       	mul	r20, r18
- 6cc:	c0 01       	movw	r24, r0
- 6ce:	43 9f       	mul	r20, r19
- 6d0:	90 0d       	add	r25, r0
- 6d2:	11 24       	eor	r1, r1
- 6d4:	8b 59       	subi	r24, 0x9B	; 155
- 6d6:	9f 4f       	sbci	r25, 0xFF	; 255
- 6d8:	fc 01       	movw	r30, r24
- 6da:	10 82       	st	Z, r1
+ 6c8:	29 81       	ldd	r18, Y+1	; 0x01
+ 6ca:	3a 81       	ldd	r19, Y+2	; 0x02
+ 6cc:	4b e0       	ldi	r20, 0x0B	; 11
+ 6ce:	42 9f       	mul	r20, r18
+ 6d0:	c0 01       	movw	r24, r0
+ 6d2:	43 9f       	mul	r20, r19
+ 6d4:	90 0d       	add	r25, r0
+ 6d6:	11 24       	eor	r1, r1
+ 6d8:	8b 59       	subi	r24, 0x9B	; 155
+ 6da:	9f 4f       	sbci	r25, 0xFF	; 255
+ 6dc:	fc 01       	movw	r30, r24
+ 6de:	10 82       	st	Z, r1
 		Tasks_Arr[i].Task_Priority = ZERO;
- 6dc:	29 81       	ldd	r18, Y+1	; 0x01
- 6de:	3a 81       	ldd	r19, Y+2	; 0x02
- 6e0:	4b e0       	ldi	r20, 0x0B	; 11
- 6e2:	42 9f       	mul	r20, r18
- 6e4:	c0 01       	movw	r24, r0
- 6e6:	43 9f       	mul	r20, r19
- 6e8:	90 0d       	add	r25, r0
- 6ea:	11 24       	eor	r1, r1
- 6ec:	86 59       	subi	r24, 0x96	; 150
- 6ee:	9f 4f       	sbci	r25, 0xFF	; 255
- 6f0:	fc 01       	movw	r30, r24
- 6f2:	10 82       	st	Z, r1
- 6f4:	11 82       	std	Z+1, r1	; 0x01
- 6f6:	12 82       	std	Z+2, r1	; 0x02
- 6f8:	13 82       	std	Z+3, r1	; 0x03
+ 6e0:	29 81       	ldd	r18, Y+1	; 0x01
+ 6e2:	3a 81       	ldd	r19, Y+2	; 0x02
+ 6e4:	4b e0       	ldi	r20, 0x0B	; 11
+ 6e6:	42 9f       	mul	r20, r18
+ 6e8:	c0 01       	movw	r24, r0
+ 6ea:	43 9f       	mul	r20, r19
+ 6ec:	90 0d       	add	r25, r0
+ 6ee:	11 24       	eor	r1, r1
+ 6f0:	86 59       	subi	r24, 0x96	; 150
+ 6f2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 6f4:	fc 01       	movw	r30, r24
+ 6f6:	10 82       	st	Z, r1
+ 6f8:	11 82       	std	Z+1, r1	; 0x01
+ 6fa:	12 82       	std	Z+2, r1	; 0x02
+ 6fc:	13 82       	std	Z+3, r1	; 0x03
 
 void scheduler_Init()
 {
 	uint32 i;
 	/*Inialize array of structure With Zero*/
 	for(i=ZERO;i<NUM_TASKS;i++)
- 6fa:	89 81       	ldd	r24, Y+1	; 0x01
- 6fc:	9a 81       	ldd	r25, Y+2	; 0x02
- 6fe:	ab 81       	ldd	r26, Y+3	; 0x03
- 700:	bc 81       	ldd	r27, Y+4	; 0x04
- 702:	01 96       	adiw	r24, 0x01	; 1
- 704:	a1 1d       	adc	r26, r1
- 706:	b1 1d       	adc	r27, r1
- 708:	89 83       	std	Y+1, r24	; 0x01
- 70a:	9a 83       	std	Y+2, r25	; 0x02
- 70c:	ab 83       	std	Y+3, r26	; 0x03
- 70e:	bc 83       	std	Y+4, r27	; 0x04
- 710:	89 81       	ldd	r24, Y+1	; 0x01
- 712:	9a 81       	ldd	r25, Y+2	; 0x02
- 714:	ab 81       	ldd	r26, Y+3	; 0x03
- 716:	bc 81       	ldd	r27, Y+4	; 0x04
- 718:	04 97       	sbiw	r24, 0x04	; 4
- 71a:	a1 05       	cpc	r26, r1
- 71c:	b1 05       	cpc	r27, r1
- 71e:	08 f4       	brcc	.+2      	; 0x722 <scheduler_Init+0xac>
- 720:	b5 cf       	rjmp	.-150    	; 0x68c <scheduler_Init+0x16>
+ 6fe:	89 81       	ldd	r24, Y+1	; 0x01
+ 700:	9a 81       	ldd	r25, Y+2	; 0x02
+ 702:	ab 81       	ldd	r26, Y+3	; 0x03
+ 704:	bc 81       	ldd	r27, Y+4	; 0x04
+ 706:	01 96       	adiw	r24, 0x01	; 1
+ 708:	a1 1d       	adc	r26, r1
+ 70a:	b1 1d       	adc	r27, r1
+ 70c:	89 83       	std	Y+1, r24	; 0x01
+ 70e:	9a 83       	std	Y+2, r25	; 0x02
+ 710:	ab 83       	std	Y+3, r26	; 0x03
+ 712:	bc 83       	std	Y+4, r27	; 0x04
+ 714:	89 81       	ldd	r24, Y+1	; 0x01
+ 716:	9a 81       	ldd	r25, Y+2	; 0x02
+ 718:	ab 81       	ldd	r26, Y+3	; 0x03
+ 71a:	bc 81       	ldd	r27, Y+4	; 0x04
+ 71c:	04 97       	sbiw	r24, 0x04	; 4
+ 71e:	a1 05       	cpc	r26, r1
+ 720:	b1 05       	cpc	r27, r1
+ 722:	08 f4       	brcc	.+2      	; 0x726 <scheduler_Init+0xac>
+ 724:	b5 cf       	rjmp	.-150    	; 0x690 <scheduler_Init+0x16>
 		Tasks_Arr[i].Tasks_Ptr = NULL;
 		Tasks_Arr[i].Task_Priority =ZERO;
 		Tasks_Arr[i].Task_Periodicity = ZERO;
 		Tasks_Arr[i].Task_Priority = ZERO;
 	}
 }
- 722:	00 00       	nop
- 724:	0f 90       	pop	r0
- 726:	0f 90       	pop	r0
+ 726:	00 00       	nop
  728:	0f 90       	pop	r0
  72a:	0f 90       	pop	r0
- 72c:	df 91       	pop	r29
- 72e:	cf 91       	pop	r28
- 730:	08 95       	ret
+ 72c:	0f 90       	pop	r0
+ 72e:	0f 90       	pop	r0
+ 730:	df 91       	pop	r29
+ 732:	cf 91       	pop	r28
+ 734:	08 95       	ret
 
-00000732 <scheduler_Start>:
+00000736 <scheduler_Start>:
 
 void scheduler_Start()
 {
- 732:	cf 93       	push	r28
- 734:	df 93       	push	r29
- 736:	cd b7       	in	r28, 0x3d	; 61
- 738:	de b7       	in	r29, 0x3e	; 62
+ 736:	cf 93       	push	r28
+ 738:	df 93       	push	r29
+ 73a:	cd b7       	in	r28, 0x3d	; 61
+ 73c:	de b7       	in	r29, 0x3e	; 62
 	/*Inialize Timer*/
 	timer_init();
- 73a:	0e 94 c4 04 	call	0x988	; 0x988 <timer_init>
+ 73e:	0e 94 1f 06 	call	0xc3e	; 0xc3e <timer_init>
 	/*Set Call_Back_function To The Set Flag*/
 	set_Callback_Function(set_flag);
- 73e:	86 ea       	ldi	r24, 0xA6	; 166
- 740:	93 e0       	ldi	r25, 0x03	; 3
- 742:	0e 94 f0 04 	call	0x9e0	; 0x9e0 <set_Callback_Function>
+ 742:	88 ea       	ldi	r24, 0xA8	; 168
+ 744:	93 e0       	ldi	r25, 0x03	; 3
+ 746:	0e 94 4b 06 	call	0xc96	; 0xc96 <set_Callback_Function>
 	while(1)
 	{
 		dispatcher();
- 746:	0e 94 07 04 	call	0x80e	; 0x80e <dispatcher>
+ 74a:	0e 94 62 05 	call	0xac4	; 0xac4 <dispatcher>
 	}
- 74a:	fd cf       	rjmp	.-6      	; 0x746 <scheduler_Start+0x14>
+ 74e:	fd cf       	rjmp	.-6      	; 0x74a <scheduler_Start+0x14>
 
-0000074c <set_flag>:
+00000750 <set_flag>:
 }
 void static set_flag(void)
 {
- 74c:	cf 93       	push	r28
- 74e:	df 93       	push	r29
- 750:	cd b7       	in	r28, 0x3d	; 61
- 752:	de b7       	in	r29, 0x3e	; 62
+ 750:	cf 93       	push	r28
+ 752:	df 93       	push	r29
+ 754:	cd b7       	in	r28, 0x3d	; 61
+ 756:	de b7       	in	r29, 0x3e	; 62
 	if( flag == ZERO)
- 754:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
- 758:	88 23       	and	r24, r24
- 75a:	19 f4       	brne	.+6      	; 0x762 <set_flag+0x16>
+ 758:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 75c:	88 23       	and	r24, r24
+ 75e:	19 f4       	brne	.+6      	; 0x766 <set_flag+0x16>
 	{
 		flag = ONE;
- 75c:	81 e0       	ldi	r24, 0x01	; 1
- 75e:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+ 760:	81 e0       	ldi	r24, 0x01	; 1
+ 762:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
 	}
 }
- 762:	00 00       	nop
- 764:	df 91       	pop	r29
- 766:	cf 91       	pop	r28
- 768:	08 95       	ret
+ 766:	00 00       	nop
+ 768:	df 91       	pop	r29
+ 76a:	cf 91       	pop	r28
+ 76c:	08 95       	ret
 
-0000076a <scheduler_Add_Task>:
-uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity)
+0000076e <scheduler_Add_Task>:
+uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity,uint8 priority)
 {
- 76a:	cf 93       	push	r28
- 76c:	df 93       	push	r29
- 76e:	00 d0       	rcall	.+0      	; 0x770 <scheduler_Add_Task+0x6>
- 770:	00 d0       	rcall	.+0      	; 0x772 <scheduler_Add_Task+0x8>
- 772:	00 d0       	rcall	.+0      	; 0x774 <scheduler_Add_Task+0xa>
- 774:	cd b7       	in	r28, 0x3d	; 61
- 776:	de b7       	in	r29, 0x3e	; 62
- 778:	9a 83       	std	Y+2, r25	; 0x02
- 77a:	89 83       	std	Y+1, r24	; 0x01
- 77c:	4b 83       	std	Y+3, r20	; 0x03
- 77e:	5c 83       	std	Y+4, r21	; 0x04
- 780:	6d 83       	std	Y+5, r22	; 0x05
- 782:	7e 83       	std	Y+6, r23	; 0x06
+ 76e:	cf 93       	push	r28
+ 770:	df 93       	push	r29
+ 772:	cd b7       	in	r28, 0x3d	; 61
+ 774:	de b7       	in	r29, 0x3e	; 62
+ 776:	64 97       	sbiw	r28, 0x14	; 20
+ 778:	0f b6       	in	r0, 0x3f	; 63
+ 77a:	f8 94       	cli
+ 77c:	de bf       	out	0x3e, r29	; 62
+ 77e:	0f be       	out	0x3f, r0	; 63
+ 780:	cd bf       	out	0x3d, r28	; 61
+ 782:	9f 87       	std	Y+15, r25	; 0x0f
+ 784:	8e 87       	std	Y+14, r24	; 0x0e
+ 786:	48 8b       	std	Y+16, r20	; 0x10
+ 788:	59 8b       	std	Y+17, r21	; 0x11
+ 78a:	6a 8b       	std	Y+18, r22	; 0x12
+ 78c:	7b 8b       	std	Y+19, r23	; 0x13
+ 78e:	2c 8b       	std	Y+20, r18	; 0x14
 		Set Remaining Ticks With Periodicity
 		Increment Last Element of Array Of structure
 	*/
 	else
 	{
 	Tasks_Arr[Last].Tasks_Ptr = Task;
- 784:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
- 788:	28 2f       	mov	r18, r24
- 78a:	30 e0       	ldi	r19, 0x00	; 0
- 78c:	4b e0       	ldi	r20, 0x0B	; 11
- 78e:	42 9f       	mul	r20, r18
- 790:	c0 01       	movw	r24, r0
- 792:	43 9f       	mul	r20, r19
- 794:	90 0d       	add	r25, r0
- 796:	11 24       	eor	r1, r1
- 798:	8d 59       	subi	r24, 0x9D	; 157
- 79a:	9f 4f       	sbci	r25, 0xFF	; 255
- 79c:	29 81       	ldd	r18, Y+1	; 0x01
- 79e:	3a 81       	ldd	r19, Y+2	; 0x02
- 7a0:	fc 01       	movw	r30, r24
- 7a2:	31 83       	std	Z+1, r19	; 0x01
- 7a4:	20 83       	st	Z, r18
+ 790:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
+ 794:	28 2f       	mov	r18, r24
+ 796:	30 e0       	ldi	r19, 0x00	; 0
+ 798:	4b e0       	ldi	r20, 0x0B	; 11
+ 79a:	42 9f       	mul	r20, r18
+ 79c:	c0 01       	movw	r24, r0
+ 79e:	43 9f       	mul	r20, r19
+ 7a0:	90 0d       	add	r25, r0
+ 7a2:	11 24       	eor	r1, r1
+ 7a4:	8d 59       	subi	r24, 0x9D	; 157
+ 7a6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 7a8:	2e 85       	ldd	r18, Y+14	; 0x0e
+ 7aa:	3f 85       	ldd	r19, Y+15	; 0x0f
+ 7ac:	fc 01       	movw	r30, r24
+ 7ae:	31 83       	std	Z+1, r19	; 0x01
+ 7b0:	20 83       	st	Z, r18
 	Tasks_Arr[Last].Task_Periodicity = Periodicity;
- 7a6:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
- 7aa:	28 2f       	mov	r18, r24
- 7ac:	30 e0       	ldi	r19, 0x00	; 0
- 7ae:	4b 81       	ldd	r20, Y+3	; 0x03
- 7b0:	5b e0       	ldi	r21, 0x0B	; 11
- 7b2:	52 9f       	mul	r21, r18
- 7b4:	c0 01       	movw	r24, r0
- 7b6:	53 9f       	mul	r21, r19
- 7b8:	90 0d       	add	r25, r0
- 7ba:	11 24       	eor	r1, r1
- 7bc:	8b 59       	subi	r24, 0x9B	; 155
- 7be:	9f 4f       	sbci	r25, 0xFF	; 255
- 7c0:	fc 01       	movw	r30, r24
- 7c2:	40 83       	st	Z, r20
+ 7b2:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
+ 7b6:	28 2f       	mov	r18, r24
+ 7b8:	30 e0       	ldi	r19, 0x00	; 0
+ 7ba:	48 89       	ldd	r20, Y+16	; 0x10
+ 7bc:	5b e0       	ldi	r21, 0x0B	; 11
+ 7be:	52 9f       	mul	r21, r18
+ 7c0:	c0 01       	movw	r24, r0
+ 7c2:	53 9f       	mul	r21, r19
+ 7c4:	90 0d       	add	r25, r0
+ 7c6:	11 24       	eor	r1, r1
+ 7c8:	8b 59       	subi	r24, 0x9B	; 155
+ 7ca:	9f 4f       	sbci	r25, 0xFF	; 255
+ 7cc:	fc 01       	movw	r30, r24
+ 7ce:	40 83       	st	Z, r20
 	Tasks_Arr[Last].Remaining_Ticks = Periodicity;
- 7c4:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
- 7c8:	28 2f       	mov	r18, r24
- 7ca:	30 e0       	ldi	r19, 0x00	; 0
- 7cc:	4b e0       	ldi	r20, 0x0B	; 11
- 7ce:	42 9f       	mul	r20, r18
- 7d0:	c0 01       	movw	r24, r0
- 7d2:	43 9f       	mul	r20, r19
- 7d4:	90 0d       	add	r25, r0
- 7d6:	11 24       	eor	r1, r1
- 7d8:	9c 01       	movw	r18, r24
- 7da:	2a 59       	subi	r18, 0x9A	; 154
- 7dc:	3f 4f       	sbci	r19, 0xFF	; 255
- 7de:	8b 81       	ldd	r24, Y+3	; 0x03
- 7e0:	9c 81       	ldd	r25, Y+4	; 0x04
- 7e2:	ad 81       	ldd	r26, Y+5	; 0x05
- 7e4:	be 81       	ldd	r27, Y+6	; 0x06
- 7e6:	f9 01       	movw	r30, r18
- 7e8:	80 83       	st	Z, r24
- 7ea:	91 83       	std	Z+1, r25	; 0x01
- 7ec:	a2 83       	std	Z+2, r26	; 0x02
- 7ee:	b3 83       	std	Z+3, r27	; 0x03
+ 7d0:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
+ 7d4:	28 2f       	mov	r18, r24
+ 7d6:	30 e0       	ldi	r19, 0x00	; 0
+ 7d8:	4b e0       	ldi	r20, 0x0B	; 11
+ 7da:	42 9f       	mul	r20, r18
+ 7dc:	c0 01       	movw	r24, r0
+ 7de:	43 9f       	mul	r20, r19
+ 7e0:	90 0d       	add	r25, r0
+ 7e2:	11 24       	eor	r1, r1
+ 7e4:	9c 01       	movw	r18, r24
+ 7e6:	2a 59       	subi	r18, 0x9A	; 154
+ 7e8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 7ea:	88 89       	ldd	r24, Y+16	; 0x10
+ 7ec:	99 89       	ldd	r25, Y+17	; 0x11
+ 7ee:	aa 89       	ldd	r26, Y+18	; 0x12
+ 7f0:	bb 89       	ldd	r27, Y+19	; 0x13
+ 7f2:	f9 01       	movw	r30, r18
+ 7f4:	80 83       	st	Z, r24
+ 7f6:	91 83       	std	Z+1, r25	; 0x01
+ 7f8:	a2 83       	std	Z+2, r26	; 0x02
+ 7fa:	b3 83       	std	Z+3, r27	; 0x03
 	Last++;
- 7f0:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
- 7f4:	8f 5f       	subi	r24, 0xFF	; 255
- 7f6:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <Last>
+ 7fc:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <Last>
+ 800:	8f 5f       	subi	r24, 0xFF	; 255
+ 802:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <Last>
+	/*Sort The Array From Low To High Depend on Priority*/
+	
+	for(index = ZERO; index < NUM_TASKS;index++)
+ 806:	19 82       	std	Y+1, r1	; 0x01
+ 808:	4f c1       	rjmp	.+670    	; 0xaa8 <__stack+0x249>
+	{
+		for (indexx = ZERO; indexx < NUM_TASKS - ONE;indexx++)
+ 80a:	1a 82       	std	Y+2, r1	; 0x02
+ 80c:	46 c1       	rjmp	.+652    	; 0xa9a <__stack+0x23b>
+		{
+			/*if priority is Inverted*/
+			if ( Tasks_Arr[indexx].Task_Priority < Tasks_Arr[indexx + ONE].Task_Priority )
+ 80e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 810:	28 2f       	mov	r18, r24
+ 812:	30 e0       	ldi	r19, 0x00	; 0
+ 814:	4b e0       	ldi	r20, 0x0B	; 11
+ 816:	42 9f       	mul	r20, r18
+ 818:	c0 01       	movw	r24, r0
+ 81a:	43 9f       	mul	r20, r19
+ 81c:	90 0d       	add	r25, r0
+ 81e:	11 24       	eor	r1, r1
+ 820:	86 59       	subi	r24, 0x96	; 150
+ 822:	9f 4f       	sbci	r25, 0xFF	; 255
+ 824:	fc 01       	movw	r30, r24
+ 826:	20 81       	ld	r18, Z
+ 828:	31 81       	ldd	r19, Z+1	; 0x01
+ 82a:	42 81       	ldd	r20, Z+2	; 0x02
+ 82c:	53 81       	ldd	r21, Z+3	; 0x03
+ 82e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 830:	88 2f       	mov	r24, r24
+ 832:	90 e0       	ldi	r25, 0x00	; 0
+ 834:	bc 01       	movw	r22, r24
+ 836:	6f 5f       	subi	r22, 0xFF	; 255
+ 838:	7f 4f       	sbci	r23, 0xFF	; 255
+ 83a:	eb e0       	ldi	r30, 0x0B	; 11
+ 83c:	e6 9f       	mul	r30, r22
+ 83e:	c0 01       	movw	r24, r0
+ 840:	e7 9f       	mul	r30, r23
+ 842:	90 0d       	add	r25, r0
+ 844:	11 24       	eor	r1, r1
+ 846:	86 59       	subi	r24, 0x96	; 150
+ 848:	9f 4f       	sbci	r25, 0xFF	; 255
+ 84a:	fc 01       	movw	r30, r24
+ 84c:	80 81       	ld	r24, Z
+ 84e:	91 81       	ldd	r25, Z+1	; 0x01
+ 850:	a2 81       	ldd	r26, Z+2	; 0x02
+ 852:	b3 81       	ldd	r27, Z+3	; 0x03
+ 854:	28 17       	cp	r18, r24
+ 856:	39 07       	cpc	r19, r25
+ 858:	4a 07       	cpc	r20, r26
+ 85a:	5b 07       	cpc	r21, r27
+ 85c:	08 f0       	brcs	.+2      	; 0x860 <__stack+0x1>
+ 85e:	1a c1       	rjmp	.+564    	; 0xa94 <__stack+0x235>
+			{
+				/*Save Tasks_Array[indexx]*/
+				Swap_Structure.Task_Priority = Tasks_Arr[indexx].Task_Priority;
+ 860:	8a 81       	ldd	r24, Y+2	; 0x02
+ 862:	28 2f       	mov	r18, r24
+ 864:	30 e0       	ldi	r19, 0x00	; 0
+ 866:	4b e0       	ldi	r20, 0x0B	; 11
+ 868:	42 9f       	mul	r20, r18
+ 86a:	c0 01       	movw	r24, r0
+ 86c:	43 9f       	mul	r20, r19
+ 86e:	90 0d       	add	r25, r0
+ 870:	11 24       	eor	r1, r1
+ 872:	86 59       	subi	r24, 0x96	; 150
+ 874:	9f 4f       	sbci	r25, 0xFF	; 255
+ 876:	fc 01       	movw	r30, r24
+ 878:	80 81       	ld	r24, Z
+ 87a:	91 81       	ldd	r25, Z+1	; 0x01
+ 87c:	a2 81       	ldd	r26, Z+2	; 0x02
+ 87e:	b3 81       	ldd	r27, Z+3	; 0x03
+ 880:	8a 87       	std	Y+10, r24	; 0x0a
+ 882:	9b 87       	std	Y+11, r25	; 0x0b
+ 884:	ac 87       	std	Y+12, r26	; 0x0c
+ 886:	bd 87       	std	Y+13, r27	; 0x0d
+				Swap_Structure.Task_Periodicity = Tasks_Arr[indexx].Task_Periodicity;
+ 888:	8a 81       	ldd	r24, Y+2	; 0x02
+ 88a:	28 2f       	mov	r18, r24
+ 88c:	30 e0       	ldi	r19, 0x00	; 0
+ 88e:	4b e0       	ldi	r20, 0x0B	; 11
+ 890:	42 9f       	mul	r20, r18
+ 892:	c0 01       	movw	r24, r0
+ 894:	43 9f       	mul	r20, r19
+ 896:	90 0d       	add	r25, r0
+ 898:	11 24       	eor	r1, r1
+ 89a:	8b 59       	subi	r24, 0x9B	; 155
+ 89c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 89e:	fc 01       	movw	r30, r24
+ 8a0:	80 81       	ld	r24, Z
+ 8a2:	8d 83       	std	Y+5, r24	; 0x05
+				Swap_Structure.Remaining_Ticks = Tasks_Arr[indexx].Remaining_Ticks;
+ 8a4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 8a6:	28 2f       	mov	r18, r24
+ 8a8:	30 e0       	ldi	r19, 0x00	; 0
+ 8aa:	4b e0       	ldi	r20, 0x0B	; 11
+ 8ac:	42 9f       	mul	r20, r18
+ 8ae:	c0 01       	movw	r24, r0
+ 8b0:	43 9f       	mul	r20, r19
+ 8b2:	90 0d       	add	r25, r0
+ 8b4:	11 24       	eor	r1, r1
+ 8b6:	8a 59       	subi	r24, 0x9A	; 154
+ 8b8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 8ba:	fc 01       	movw	r30, r24
+ 8bc:	80 81       	ld	r24, Z
+ 8be:	91 81       	ldd	r25, Z+1	; 0x01
+ 8c0:	a2 81       	ldd	r26, Z+2	; 0x02
+ 8c2:	b3 81       	ldd	r27, Z+3	; 0x03
+ 8c4:	8e 83       	std	Y+6, r24	; 0x06
+ 8c6:	9f 83       	std	Y+7, r25	; 0x07
+ 8c8:	a8 87       	std	Y+8, r26	; 0x08
+ 8ca:	b9 87       	std	Y+9, r27	; 0x09
+				Swap_Structure.Tasks_Ptr = Tasks_Arr[indexx].Tasks_Ptr;
+ 8cc:	8a 81       	ldd	r24, Y+2	; 0x02
+ 8ce:	28 2f       	mov	r18, r24
+ 8d0:	30 e0       	ldi	r19, 0x00	; 0
+ 8d2:	4b e0       	ldi	r20, 0x0B	; 11
+ 8d4:	42 9f       	mul	r20, r18
+ 8d6:	c0 01       	movw	r24, r0
+ 8d8:	43 9f       	mul	r20, r19
+ 8da:	90 0d       	add	r25, r0
+ 8dc:	11 24       	eor	r1, r1
+ 8de:	8d 59       	subi	r24, 0x9D	; 157
+ 8e0:	9f 4f       	sbci	r25, 0xFF	; 255
+ 8e2:	fc 01       	movw	r30, r24
+ 8e4:	80 81       	ld	r24, Z
+ 8e6:	91 81       	ldd	r25, Z+1	; 0x01
+ 8e8:	9c 83       	std	Y+4, r25	; 0x04
+ 8ea:	8b 83       	std	Y+3, r24	; 0x03
+				
+				/* Swap Tasks*/
+				Tasks_Arr[indexx].Remaining_Ticks = Tasks_Arr[indexx + 1].Remaining_Ticks;
+ 8ec:	8a 81       	ldd	r24, Y+2	; 0x02
+ 8ee:	48 2f       	mov	r20, r24
+ 8f0:	50 e0       	ldi	r21, 0x00	; 0
+ 8f2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 8f4:	88 2f       	mov	r24, r24
+ 8f6:	90 e0       	ldi	r25, 0x00	; 0
+ 8f8:	9c 01       	movw	r18, r24
+ 8fa:	2f 5f       	subi	r18, 0xFF	; 255
+ 8fc:	3f 4f       	sbci	r19, 0xFF	; 255
+ 8fe:	6b e0       	ldi	r22, 0x0B	; 11
+ 900:	62 9f       	mul	r22, r18
+ 902:	c0 01       	movw	r24, r0
+ 904:	63 9f       	mul	r22, r19
+ 906:	90 0d       	add	r25, r0
+ 908:	11 24       	eor	r1, r1
+ 90a:	8a 59       	subi	r24, 0x9A	; 154
+ 90c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 90e:	fc 01       	movw	r30, r24
+ 910:	80 81       	ld	r24, Z
+ 912:	91 81       	ldd	r25, Z+1	; 0x01
+ 914:	a2 81       	ldd	r26, Z+2	; 0x02
+ 916:	b3 81       	ldd	r27, Z+3	; 0x03
+ 918:	6b e0       	ldi	r22, 0x0B	; 11
+ 91a:	64 9f       	mul	r22, r20
+ 91c:	90 01       	movw	r18, r0
+ 91e:	65 9f       	mul	r22, r21
+ 920:	30 0d       	add	r19, r0
+ 922:	11 24       	eor	r1, r1
+ 924:	2a 59       	subi	r18, 0x9A	; 154
+ 926:	3f 4f       	sbci	r19, 0xFF	; 255
+ 928:	f9 01       	movw	r30, r18
+ 92a:	80 83       	st	Z, r24
+ 92c:	91 83       	std	Z+1, r25	; 0x01
+ 92e:	a2 83       	std	Z+2, r26	; 0x02
+ 930:	b3 83       	std	Z+3, r27	; 0x03
+				Tasks_Arr[indexx].Task_Priority = Tasks_Arr[indexx + 1].Task_Priority;
+ 932:	8a 81       	ldd	r24, Y+2	; 0x02
+ 934:	48 2f       	mov	r20, r24
+ 936:	50 e0       	ldi	r21, 0x00	; 0
+ 938:	8a 81       	ldd	r24, Y+2	; 0x02
+ 93a:	88 2f       	mov	r24, r24
+ 93c:	90 e0       	ldi	r25, 0x00	; 0
+ 93e:	9c 01       	movw	r18, r24
+ 940:	2f 5f       	subi	r18, 0xFF	; 255
+ 942:	3f 4f       	sbci	r19, 0xFF	; 255
+ 944:	6b e0       	ldi	r22, 0x0B	; 11
+ 946:	62 9f       	mul	r22, r18
+ 948:	c0 01       	movw	r24, r0
+ 94a:	63 9f       	mul	r22, r19
+ 94c:	90 0d       	add	r25, r0
+ 94e:	11 24       	eor	r1, r1
+ 950:	86 59       	subi	r24, 0x96	; 150
+ 952:	9f 4f       	sbci	r25, 0xFF	; 255
+ 954:	fc 01       	movw	r30, r24
+ 956:	80 81       	ld	r24, Z
+ 958:	91 81       	ldd	r25, Z+1	; 0x01
+ 95a:	a2 81       	ldd	r26, Z+2	; 0x02
+ 95c:	b3 81       	ldd	r27, Z+3	; 0x03
+ 95e:	6b e0       	ldi	r22, 0x0B	; 11
+ 960:	64 9f       	mul	r22, r20
+ 962:	90 01       	movw	r18, r0
+ 964:	65 9f       	mul	r22, r21
+ 966:	30 0d       	add	r19, r0
+ 968:	11 24       	eor	r1, r1
+ 96a:	26 59       	subi	r18, 0x96	; 150
+ 96c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 96e:	f9 01       	movw	r30, r18
+ 970:	80 83       	st	Z, r24
+ 972:	91 83       	std	Z+1, r25	; 0x01
+ 974:	a2 83       	std	Z+2, r26	; 0x02
+ 976:	b3 83       	std	Z+3, r27	; 0x03
+				Tasks_Arr[indexx].Task_Periodicity = Tasks_Arr[indexx + 1].Task_Periodicity;
+ 978:	8a 81       	ldd	r24, Y+2	; 0x02
+ 97a:	28 2f       	mov	r18, r24
+ 97c:	30 e0       	ldi	r19, 0x00	; 0
+ 97e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 980:	88 2f       	mov	r24, r24
+ 982:	90 e0       	ldi	r25, 0x00	; 0
+ 984:	ac 01       	movw	r20, r24
+ 986:	4f 5f       	subi	r20, 0xFF	; 255
+ 988:	5f 4f       	sbci	r21, 0xFF	; 255
+ 98a:	6b e0       	ldi	r22, 0x0B	; 11
+ 98c:	64 9f       	mul	r22, r20
+ 98e:	c0 01       	movw	r24, r0
+ 990:	65 9f       	mul	r22, r21
+ 992:	90 0d       	add	r25, r0
+ 994:	11 24       	eor	r1, r1
+ 996:	8b 59       	subi	r24, 0x9B	; 155
+ 998:	9f 4f       	sbci	r25, 0xFF	; 255
+ 99a:	fc 01       	movw	r30, r24
+ 99c:	40 81       	ld	r20, Z
+ 99e:	5b e0       	ldi	r21, 0x0B	; 11
+ 9a0:	52 9f       	mul	r21, r18
+ 9a2:	c0 01       	movw	r24, r0
+ 9a4:	53 9f       	mul	r21, r19
+ 9a6:	90 0d       	add	r25, r0
+ 9a8:	11 24       	eor	r1, r1
+ 9aa:	8b 59       	subi	r24, 0x9B	; 155
+ 9ac:	9f 4f       	sbci	r25, 0xFF	; 255
+ 9ae:	fc 01       	movw	r30, r24
+ 9b0:	40 83       	st	Z, r20
+				Tasks_Arr[indexx].Tasks_Ptr = Tasks_Arr[indexx+1].Tasks_Ptr;
+ 9b2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 9b4:	48 2f       	mov	r20, r24
+ 9b6:	50 e0       	ldi	r21, 0x00	; 0
+ 9b8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 9ba:	88 2f       	mov	r24, r24
+ 9bc:	90 e0       	ldi	r25, 0x00	; 0
+ 9be:	9c 01       	movw	r18, r24
+ 9c0:	2f 5f       	subi	r18, 0xFF	; 255
+ 9c2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 9c4:	6b e0       	ldi	r22, 0x0B	; 11
+ 9c6:	62 9f       	mul	r22, r18
+ 9c8:	c0 01       	movw	r24, r0
+ 9ca:	63 9f       	mul	r22, r19
+ 9cc:	90 0d       	add	r25, r0
+ 9ce:	11 24       	eor	r1, r1
+ 9d0:	8d 59       	subi	r24, 0x9D	; 157
+ 9d2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 9d4:	fc 01       	movw	r30, r24
+ 9d6:	20 81       	ld	r18, Z
+ 9d8:	31 81       	ldd	r19, Z+1	; 0x01
+ 9da:	6b e0       	ldi	r22, 0x0B	; 11
+ 9dc:	64 9f       	mul	r22, r20
+ 9de:	c0 01       	movw	r24, r0
+ 9e0:	65 9f       	mul	r22, r21
+ 9e2:	90 0d       	add	r25, r0
+ 9e4:	11 24       	eor	r1, r1
+ 9e6:	8d 59       	subi	r24, 0x9D	; 157
+ 9e8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 9ea:	fc 01       	movw	r30, r24
+ 9ec:	31 83       	std	Z+1, r19	; 0x01
+ 9ee:	20 83       	st	Z, r18
+				
+				/*Swap Tasks_Arr[indexx+1]*/
+				Tasks_Arr[indexx + 1].Remaining_Ticks = Swap_Structure.Remaining_Ticks;
+ 9f0:	8a 81       	ldd	r24, Y+2	; 0x02
+ 9f2:	88 2f       	mov	r24, r24
+ 9f4:	90 e0       	ldi	r25, 0x00	; 0
+ 9f6:	ac 01       	movw	r20, r24
+ 9f8:	4f 5f       	subi	r20, 0xFF	; 255
+ 9fa:	5f 4f       	sbci	r21, 0xFF	; 255
+ 9fc:	8e 81       	ldd	r24, Y+6	; 0x06
+ 9fe:	9f 81       	ldd	r25, Y+7	; 0x07
+ a00:	a8 85       	ldd	r26, Y+8	; 0x08
+ a02:	b9 85       	ldd	r27, Y+9	; 0x09
+ a04:	6b e0       	ldi	r22, 0x0B	; 11
+ a06:	64 9f       	mul	r22, r20
+ a08:	90 01       	movw	r18, r0
+ a0a:	65 9f       	mul	r22, r21
+ a0c:	30 0d       	add	r19, r0
+ a0e:	11 24       	eor	r1, r1
+ a10:	2a 59       	subi	r18, 0x9A	; 154
+ a12:	3f 4f       	sbci	r19, 0xFF	; 255
+ a14:	f9 01       	movw	r30, r18
+ a16:	80 83       	st	Z, r24
+ a18:	91 83       	std	Z+1, r25	; 0x01
+ a1a:	a2 83       	std	Z+2, r26	; 0x02
+ a1c:	b3 83       	std	Z+3, r27	; 0x03
+				Tasks_Arr[indexx + 1].Task_Priority = Swap_Structure.Task_Priority;
+ a1e:	8a 81       	ldd	r24, Y+2	; 0x02
+ a20:	88 2f       	mov	r24, r24
+ a22:	90 e0       	ldi	r25, 0x00	; 0
+ a24:	ac 01       	movw	r20, r24
+ a26:	4f 5f       	subi	r20, 0xFF	; 255
+ a28:	5f 4f       	sbci	r21, 0xFF	; 255
+ a2a:	8a 85       	ldd	r24, Y+10	; 0x0a
+ a2c:	9b 85       	ldd	r25, Y+11	; 0x0b
+ a2e:	ac 85       	ldd	r26, Y+12	; 0x0c
+ a30:	bd 85       	ldd	r27, Y+13	; 0x0d
+ a32:	6b e0       	ldi	r22, 0x0B	; 11
+ a34:	64 9f       	mul	r22, r20
+ a36:	90 01       	movw	r18, r0
+ a38:	65 9f       	mul	r22, r21
+ a3a:	30 0d       	add	r19, r0
+ a3c:	11 24       	eor	r1, r1
+ a3e:	26 59       	subi	r18, 0x96	; 150
+ a40:	3f 4f       	sbci	r19, 0xFF	; 255
+ a42:	f9 01       	movw	r30, r18
+ a44:	80 83       	st	Z, r24
+ a46:	91 83       	std	Z+1, r25	; 0x01
+ a48:	a2 83       	std	Z+2, r26	; 0x02
+ a4a:	b3 83       	std	Z+3, r27	; 0x03
+				Tasks_Arr[indexx + 1].Task_Periodicity = Swap_Structure.Task_Periodicity;
+ a4c:	8a 81       	ldd	r24, Y+2	; 0x02
+ a4e:	88 2f       	mov	r24, r24
+ a50:	90 e0       	ldi	r25, 0x00	; 0
+ a52:	9c 01       	movw	r18, r24
+ a54:	2f 5f       	subi	r18, 0xFF	; 255
+ a56:	3f 4f       	sbci	r19, 0xFF	; 255
+ a58:	4d 81       	ldd	r20, Y+5	; 0x05
+ a5a:	5b e0       	ldi	r21, 0x0B	; 11
+ a5c:	52 9f       	mul	r21, r18
+ a5e:	c0 01       	movw	r24, r0
+ a60:	53 9f       	mul	r21, r19
+ a62:	90 0d       	add	r25, r0
+ a64:	11 24       	eor	r1, r1
+ a66:	8b 59       	subi	r24, 0x9B	; 155
+ a68:	9f 4f       	sbci	r25, 0xFF	; 255
+ a6a:	fc 01       	movw	r30, r24
+ a6c:	40 83       	st	Z, r20
+				Tasks_Arr[indexx+1].Tasks_Ptr = Swap_Structure.Tasks_Ptr;
+ a6e:	8a 81       	ldd	r24, Y+2	; 0x02
+ a70:	88 2f       	mov	r24, r24
+ a72:	90 e0       	ldi	r25, 0x00	; 0
+ a74:	ac 01       	movw	r20, r24
+ a76:	4f 5f       	subi	r20, 0xFF	; 255
+ a78:	5f 4f       	sbci	r21, 0xFF	; 255
+ a7a:	2b 81       	ldd	r18, Y+3	; 0x03
+ a7c:	3c 81       	ldd	r19, Y+4	; 0x04
+ a7e:	6b e0       	ldi	r22, 0x0B	; 11
+ a80:	64 9f       	mul	r22, r20
+ a82:	c0 01       	movw	r24, r0
+ a84:	65 9f       	mul	r22, r21
+ a86:	90 0d       	add	r25, r0
+ a88:	11 24       	eor	r1, r1
+ a8a:	8d 59       	subi	r24, 0x9D	; 157
+ a8c:	9f 4f       	sbci	r25, 0xFF	; 255
+ a8e:	fc 01       	movw	r30, r24
+ a90:	31 83       	std	Z+1, r19	; 0x01
+ a92:	20 83       	st	Z, r18
+	Last++;
+	/*Sort The Array From Low To High Depend on Priority*/
+	
+	for(index = ZERO; index < NUM_TASKS;index++)
+	{
+		for (indexx = ZERO; indexx < NUM_TASKS - ONE;indexx++)
+ a94:	8a 81       	ldd	r24, Y+2	; 0x02
+ a96:	8f 5f       	subi	r24, 0xFF	; 255
+ a98:	8a 83       	std	Y+2, r24	; 0x02
+ a9a:	8a 81       	ldd	r24, Y+2	; 0x02
+ a9c:	83 30       	cpi	r24, 0x03	; 3
+ a9e:	08 f4       	brcc	.+2      	; 0xaa2 <__stack+0x243>
+ aa0:	b6 ce       	rjmp	.-660    	; 0x80e <scheduler_Add_Task+0xa0>
+	Tasks_Arr[Last].Task_Periodicity = Periodicity;
+	Tasks_Arr[Last].Remaining_Ticks = Periodicity;
+	Last++;
+	/*Sort The Array From Low To High Depend on Priority*/
+	
+	for(index = ZERO; index < NUM_TASKS;index++)
+ aa2:	89 81       	ldd	r24, Y+1	; 0x01
+ aa4:	8f 5f       	subi	r24, 0xFF	; 255
+ aa6:	89 83       	std	Y+1, r24	; 0x01
+ aa8:	89 81       	ldd	r24, Y+1	; 0x01
+ aaa:	84 30       	cpi	r24, 0x04	; 4
+ aac:	08 f4       	brcc	.+2      	; 0xab0 <__stack+0x251>
+ aae:	ad ce       	rjmp	.-678    	; 0x80a <scheduler_Add_Task+0x9c>
+				Tasks_Arr[indexx + 1].Task_Periodicity = Swap_Structure.Task_Periodicity;
+				Tasks_Arr[indexx+1].Tasks_Ptr = Swap_Structure.Tasks_Ptr;
+			}
+		}
+	}
 	return TRUE;
- 7fa:	81 e0       	ldi	r24, 0x01	; 1
+ ab0:	81 e0       	ldi	r24, 0x01	; 1
 	}
 }
- 7fc:	26 96       	adiw	r28, 0x06	; 6
- 7fe:	0f b6       	in	r0, 0x3f	; 63
- 800:	f8 94       	cli
- 802:	de bf       	out	0x3e, r29	; 62
- 804:	0f be       	out	0x3f, r0	; 63
- 806:	cd bf       	out	0x3d, r28	; 61
- 808:	df 91       	pop	r29
- 80a:	cf 91       	pop	r28
- 80c:	08 95       	ret
+ ab2:	64 96       	adiw	r28, 0x14	; 20
+ ab4:	0f b6       	in	r0, 0x3f	; 63
+ ab6:	f8 94       	cli
+ ab8:	de bf       	out	0x3e, r29	; 62
+ aba:	0f be       	out	0x3f, r0	; 63
+ abc:	cd bf       	out	0x3d, r28	; 61
+ abe:	df 91       	pop	r29
+ ac0:	cf 91       	pop	r28
+ ac2:	08 95       	ret
 
-0000080e <dispatcher>:
+00000ac4 <dispatcher>:
 
 void dispatcher(void)
 {
- 80e:	cf 93       	push	r28
- 810:	df 93       	push	r29
- 812:	00 d0       	rcall	.+0      	; 0x814 <dispatcher+0x6>
- 814:	00 d0       	rcall	.+0      	; 0x816 <dispatcher+0x8>
- 816:	cd b7       	in	r28, 0x3d	; 61
- 818:	de b7       	in	r29, 0x3e	; 62
+ ac4:	cf 93       	push	r28
+ ac6:	df 93       	push	r29
+ ac8:	00 d0       	rcall	.+0      	; 0xaca <dispatcher+0x6>
+ aca:	00 d0       	rcall	.+0      	; 0xacc <dispatcher+0x8>
+ acc:	cd b7       	in	r28, 0x3d	; 61
+ ace:	de b7       	in	r29, 0x3e	; 62
 	volatile static uint8 NewTickFlag = ZERO ;
 	uint32 j;
 	/*IF Timer Interrupt Happened Flag Will Be One*/
 	if (ONE == flag)
- 81a:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
- 81e:	81 30       	cpi	r24, 0x01	; 1
- 820:	09 f0       	breq	.+2      	; 0x824 <dispatcher+0x16>
- 822:	82 c0       	rjmp	.+260    	; 0x928 <__stack+0xc9>
+ ad0:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ ad4:	81 30       	cpi	r24, 0x01	; 1
+ ad6:	09 f0       	breq	.+2      	; 0xada <dispatcher+0x16>
+ ad8:	82 c0       	rjmp	.+260    	; 0xbde <dispatcher+0x11a>
 	{
 		/* Increment Flag */
 		NewTickFlag++;
- 824:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <NewTickFlag.1627>
- 828:	8f 5f       	subi	r24, 0xFF	; 255
- 82a:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <NewTickFlag.1627>
+ ada:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <NewTickFlag.1638>
+ ade:	8f 5f       	subi	r24, 0xFF	; 255
+ ae0:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <NewTickFlag.1638>
 	/*For Loop For The Tasks and Scheduale Them*/
 	for(j=ZERO;j<NUM_TASKS;j++)
- 82e:	19 82       	std	Y+1, r1	; 0x01
- 830:	1a 82       	std	Y+2, r1	; 0x02
- 832:	1b 82       	std	Y+3, r1	; 0x03
- 834:	1c 82       	std	Y+4, r1	; 0x04
- 836:	6d c0       	rjmp	.+218    	; 0x912 <__stack+0xb3>
+ ae4:	19 82       	std	Y+1, r1	; 0x01
+ ae6:	1a 82       	std	Y+2, r1	; 0x02
+ ae8:	1b 82       	std	Y+3, r1	; 0x03
+ aea:	1c 82       	std	Y+4, r1	; 0x04
+ aec:	6d c0       	rjmp	.+218    	; 0xbc8 <dispatcher+0x104>
 	{
 		/*Decrement Periodicity by ONE Every Tick */
 		Tasks_Arr[j].Remaining_Ticks--;
- 838:	29 81       	ldd	r18, Y+1	; 0x01
- 83a:	3a 81       	ldd	r19, Y+2	; 0x02
- 83c:	4b e0       	ldi	r20, 0x0B	; 11
- 83e:	42 9f       	mul	r20, r18
- 840:	c0 01       	movw	r24, r0
- 842:	43 9f       	mul	r20, r19
- 844:	90 0d       	add	r25, r0
- 846:	11 24       	eor	r1, r1
- 848:	8a 59       	subi	r24, 0x9A	; 154
- 84a:	9f 4f       	sbci	r25, 0xFF	; 255
- 84c:	fc 01       	movw	r30, r24
- 84e:	80 81       	ld	r24, Z
- 850:	91 81       	ldd	r25, Z+1	; 0x01
- 852:	a2 81       	ldd	r26, Z+2	; 0x02
- 854:	b3 81       	ldd	r27, Z+3	; 0x03
- 856:	01 97       	sbiw	r24, 0x01	; 1
- 858:	a1 09       	sbc	r26, r1
- 85a:	b1 09       	sbc	r27, r1
- 85c:	49 81       	ldd	r20, Y+1	; 0x01
- 85e:	5a 81       	ldd	r21, Y+2	; 0x02
- 860:	6b e0       	ldi	r22, 0x0B	; 11
- 862:	64 9f       	mul	r22, r20
- 864:	90 01       	movw	r18, r0
- 866:	65 9f       	mul	r22, r21
- 868:	30 0d       	add	r19, r0
- 86a:	11 24       	eor	r1, r1
- 86c:	2a 59       	subi	r18, 0x9A	; 154
- 86e:	3f 4f       	sbci	r19, 0xFF	; 255
- 870:	f9 01       	movw	r30, r18
- 872:	80 83       	st	Z, r24
- 874:	91 83       	std	Z+1, r25	; 0x01
- 876:	a2 83       	std	Z+2, r26	; 0x02
- 878:	b3 83       	std	Z+3, r27	; 0x03
+ aee:	29 81       	ldd	r18, Y+1	; 0x01
+ af0:	3a 81       	ldd	r19, Y+2	; 0x02
+ af2:	4b e0       	ldi	r20, 0x0B	; 11
+ af4:	42 9f       	mul	r20, r18
+ af6:	c0 01       	movw	r24, r0
+ af8:	43 9f       	mul	r20, r19
+ afa:	90 0d       	add	r25, r0
+ afc:	11 24       	eor	r1, r1
+ afe:	8a 59       	subi	r24, 0x9A	; 154
+ b00:	9f 4f       	sbci	r25, 0xFF	; 255
+ b02:	fc 01       	movw	r30, r24
+ b04:	80 81       	ld	r24, Z
+ b06:	91 81       	ldd	r25, Z+1	; 0x01
+ b08:	a2 81       	ldd	r26, Z+2	; 0x02
+ b0a:	b3 81       	ldd	r27, Z+3	; 0x03
+ b0c:	01 97       	sbiw	r24, 0x01	; 1
+ b0e:	a1 09       	sbc	r26, r1
+ b10:	b1 09       	sbc	r27, r1
+ b12:	49 81       	ldd	r20, Y+1	; 0x01
+ b14:	5a 81       	ldd	r21, Y+2	; 0x02
+ b16:	6b e0       	ldi	r22, 0x0B	; 11
+ b18:	64 9f       	mul	r22, r20
+ b1a:	90 01       	movw	r18, r0
+ b1c:	65 9f       	mul	r22, r21
+ b1e:	30 0d       	add	r19, r0
+ b20:	11 24       	eor	r1, r1
+ b22:	2a 59       	subi	r18, 0x9A	; 154
+ b24:	3f 4f       	sbci	r19, 0xFF	; 255
+ b26:	f9 01       	movw	r30, r18
+ b28:	80 83       	st	Z, r24
+ b2a:	91 83       	std	Z+1, r25	; 0x01
+ b2c:	a2 83       	std	Z+2, r26	; 0x02
+ b2e:	b3 83       	std	Z+3, r27	; 0x03
 		/*IF Remaining  Ticks Equals Zero Excute Task and Set Remaining To The Periodicity*/
 		if(Tasks_Arr[j].Remaining_Ticks == ZERO )
- 87a:	29 81       	ldd	r18, Y+1	; 0x01
- 87c:	3a 81       	ldd	r19, Y+2	; 0x02
- 87e:	4b e0       	ldi	r20, 0x0B	; 11
- 880:	42 9f       	mul	r20, r18
- 882:	c0 01       	movw	r24, r0
- 884:	43 9f       	mul	r20, r19
- 886:	90 0d       	add	r25, r0
- 888:	11 24       	eor	r1, r1
- 88a:	8a 59       	subi	r24, 0x9A	; 154
- 88c:	9f 4f       	sbci	r25, 0xFF	; 255
- 88e:	fc 01       	movw	r30, r24
- 890:	80 81       	ld	r24, Z
- 892:	91 81       	ldd	r25, Z+1	; 0x01
- 894:	a2 81       	ldd	r26, Z+2	; 0x02
- 896:	b3 81       	ldd	r27, Z+3	; 0x03
- 898:	89 2b       	or	r24, r25
- 89a:	8a 2b       	or	r24, r26
- 89c:	8b 2b       	or	r24, r27
- 89e:	71 f5       	brne	.+92     	; 0x8fc <__stack+0x9d>
+ b30:	29 81       	ldd	r18, Y+1	; 0x01
+ b32:	3a 81       	ldd	r19, Y+2	; 0x02
+ b34:	4b e0       	ldi	r20, 0x0B	; 11
+ b36:	42 9f       	mul	r20, r18
+ b38:	c0 01       	movw	r24, r0
+ b3a:	43 9f       	mul	r20, r19
+ b3c:	90 0d       	add	r25, r0
+ b3e:	11 24       	eor	r1, r1
+ b40:	8a 59       	subi	r24, 0x9A	; 154
+ b42:	9f 4f       	sbci	r25, 0xFF	; 255
+ b44:	fc 01       	movw	r30, r24
+ b46:	80 81       	ld	r24, Z
+ b48:	91 81       	ldd	r25, Z+1	; 0x01
+ b4a:	a2 81       	ldd	r26, Z+2	; 0x02
+ b4c:	b3 81       	ldd	r27, Z+3	; 0x03
+ b4e:	89 2b       	or	r24, r25
+ b50:	8a 2b       	or	r24, r26
+ b52:	8b 2b       	or	r24, r27
+ b54:	71 f5       	brne	.+92     	; 0xbb2 <dispatcher+0xee>
 		{
 			/*Call Function*/
 			Tasks_Arr[j].Tasks_Ptr();
- 8a0:	29 81       	ldd	r18, Y+1	; 0x01
- 8a2:	3a 81       	ldd	r19, Y+2	; 0x02
- 8a4:	4b e0       	ldi	r20, 0x0B	; 11
- 8a6:	42 9f       	mul	r20, r18
- 8a8:	c0 01       	movw	r24, r0
- 8aa:	43 9f       	mul	r20, r19
- 8ac:	90 0d       	add	r25, r0
- 8ae:	11 24       	eor	r1, r1
- 8b0:	8d 59       	subi	r24, 0x9D	; 157
- 8b2:	9f 4f       	sbci	r25, 0xFF	; 255
- 8b4:	fc 01       	movw	r30, r24
- 8b6:	80 81       	ld	r24, Z
- 8b8:	91 81       	ldd	r25, Z+1	; 0x01
- 8ba:	fc 01       	movw	r30, r24
- 8bc:	09 95       	icall
+ b56:	29 81       	ldd	r18, Y+1	; 0x01
+ b58:	3a 81       	ldd	r19, Y+2	; 0x02
+ b5a:	4b e0       	ldi	r20, 0x0B	; 11
+ b5c:	42 9f       	mul	r20, r18
+ b5e:	c0 01       	movw	r24, r0
+ b60:	43 9f       	mul	r20, r19
+ b62:	90 0d       	add	r25, r0
+ b64:	11 24       	eor	r1, r1
+ b66:	8d 59       	subi	r24, 0x9D	; 157
+ b68:	9f 4f       	sbci	r25, 0xFF	; 255
+ b6a:	fc 01       	movw	r30, r24
+ b6c:	80 81       	ld	r24, Z
+ b6e:	91 81       	ldd	r25, Z+1	; 0x01
+ b70:	fc 01       	movw	r30, r24
+ b72:	09 95       	icall
 			/*Set Remaining To The Periodicity*/
 			Tasks_Arr[j].Remaining_Ticks = Tasks_Arr[j].Task_Periodicity;
- 8be:	29 81       	ldd	r18, Y+1	; 0x01
- 8c0:	3a 81       	ldd	r19, Y+2	; 0x02
- 8c2:	4b e0       	ldi	r20, 0x0B	; 11
- 8c4:	42 9f       	mul	r20, r18
- 8c6:	c0 01       	movw	r24, r0
- 8c8:	43 9f       	mul	r20, r19
- 8ca:	90 0d       	add	r25, r0
- 8cc:	11 24       	eor	r1, r1
- 8ce:	8b 59       	subi	r24, 0x9B	; 155
- 8d0:	9f 4f       	sbci	r25, 0xFF	; 255
- 8d2:	fc 01       	movw	r30, r24
- 8d4:	80 81       	ld	r24, Z
- 8d6:	88 2f       	mov	r24, r24
- 8d8:	90 e0       	ldi	r25, 0x00	; 0
- 8da:	a0 e0       	ldi	r26, 0x00	; 0
- 8dc:	b0 e0       	ldi	r27, 0x00	; 0
- 8de:	49 81       	ldd	r20, Y+1	; 0x01
- 8e0:	5a 81       	ldd	r21, Y+2	; 0x02
- 8e2:	6b e0       	ldi	r22, 0x0B	; 11
- 8e4:	64 9f       	mul	r22, r20
- 8e6:	90 01       	movw	r18, r0
- 8e8:	65 9f       	mul	r22, r21
- 8ea:	30 0d       	add	r19, r0
- 8ec:	11 24       	eor	r1, r1
- 8ee:	2a 59       	subi	r18, 0x9A	; 154
- 8f0:	3f 4f       	sbci	r19, 0xFF	; 255
- 8f2:	f9 01       	movw	r30, r18
- 8f4:	80 83       	st	Z, r24
- 8f6:	91 83       	std	Z+1, r25	; 0x01
- 8f8:	a2 83       	std	Z+2, r26	; 0x02
- 8fa:	b3 83       	std	Z+3, r27	; 0x03
+ b74:	29 81       	ldd	r18, Y+1	; 0x01
+ b76:	3a 81       	ldd	r19, Y+2	; 0x02
+ b78:	4b e0       	ldi	r20, 0x0B	; 11
+ b7a:	42 9f       	mul	r20, r18
+ b7c:	c0 01       	movw	r24, r0
+ b7e:	43 9f       	mul	r20, r19
+ b80:	90 0d       	add	r25, r0
+ b82:	11 24       	eor	r1, r1
+ b84:	8b 59       	subi	r24, 0x9B	; 155
+ b86:	9f 4f       	sbci	r25, 0xFF	; 255
+ b88:	fc 01       	movw	r30, r24
+ b8a:	80 81       	ld	r24, Z
+ b8c:	88 2f       	mov	r24, r24
+ b8e:	90 e0       	ldi	r25, 0x00	; 0
+ b90:	a0 e0       	ldi	r26, 0x00	; 0
+ b92:	b0 e0       	ldi	r27, 0x00	; 0
+ b94:	49 81       	ldd	r20, Y+1	; 0x01
+ b96:	5a 81       	ldd	r21, Y+2	; 0x02
+ b98:	6b e0       	ldi	r22, 0x0B	; 11
+ b9a:	64 9f       	mul	r22, r20
+ b9c:	90 01       	movw	r18, r0
+ b9e:	65 9f       	mul	r22, r21
+ ba0:	30 0d       	add	r19, r0
+ ba2:	11 24       	eor	r1, r1
+ ba4:	2a 59       	subi	r18, 0x9A	; 154
+ ba6:	3f 4f       	sbci	r19, 0xFF	; 255
+ ba8:	f9 01       	movw	r30, r18
+ baa:	80 83       	st	Z, r24
+ bac:	91 83       	std	Z+1, r25	; 0x01
+ bae:	a2 83       	std	Z+2, r26	; 0x02
+ bb0:	b3 83       	std	Z+3, r27	; 0x03
 	if (ONE == flag)
 	{
 		/* Increment Flag */
 		NewTickFlag++;
 	/*For Loop For The Tasks and Scheduale Them*/
 	for(j=ZERO;j<NUM_TASKS;j++)
- 8fc:	89 81       	ldd	r24, Y+1	; 0x01
- 8fe:	9a 81       	ldd	r25, Y+2	; 0x02
- 900:	ab 81       	ldd	r26, Y+3	; 0x03
- 902:	bc 81       	ldd	r27, Y+4	; 0x04
- 904:	01 96       	adiw	r24, 0x01	; 1
- 906:	a1 1d       	adc	r26, r1
- 908:	b1 1d       	adc	r27, r1
- 90a:	89 83       	std	Y+1, r24	; 0x01
- 90c:	9a 83       	std	Y+2, r25	; 0x02
- 90e:	ab 83       	std	Y+3, r26	; 0x03
- 910:	bc 83       	std	Y+4, r27	; 0x04
- 912:	89 81       	ldd	r24, Y+1	; 0x01
- 914:	9a 81       	ldd	r25, Y+2	; 0x02
- 916:	ab 81       	ldd	r26, Y+3	; 0x03
- 918:	bc 81       	ldd	r27, Y+4	; 0x04
- 91a:	04 97       	sbiw	r24, 0x04	; 4
- 91c:	a1 05       	cpc	r26, r1
- 91e:	b1 05       	cpc	r27, r1
- 920:	08 f4       	brcc	.+2      	; 0x924 <__stack+0xc5>
- 922:	8a cf       	rjmp	.-236    	; 0x838 <dispatcher+0x2a>
+ bb2:	89 81       	ldd	r24, Y+1	; 0x01
+ bb4:	9a 81       	ldd	r25, Y+2	; 0x02
+ bb6:	ab 81       	ldd	r26, Y+3	; 0x03
+ bb8:	bc 81       	ldd	r27, Y+4	; 0x04
+ bba:	01 96       	adiw	r24, 0x01	; 1
+ bbc:	a1 1d       	adc	r26, r1
+ bbe:	b1 1d       	adc	r27, r1
+ bc0:	89 83       	std	Y+1, r24	; 0x01
+ bc2:	9a 83       	std	Y+2, r25	; 0x02
+ bc4:	ab 83       	std	Y+3, r26	; 0x03
+ bc6:	bc 83       	std	Y+4, r27	; 0x04
+ bc8:	89 81       	ldd	r24, Y+1	; 0x01
+ bca:	9a 81       	ldd	r25, Y+2	; 0x02
+ bcc:	ab 81       	ldd	r26, Y+3	; 0x03
+ bce:	bc 81       	ldd	r27, Y+4	; 0x04
+ bd0:	04 97       	sbiw	r24, 0x04	; 4
+ bd2:	a1 05       	cpc	r26, r1
+ bd4:	b1 05       	cpc	r27, r1
+ bd6:	08 f4       	brcc	.+2      	; 0xbda <dispatcher+0x116>
+ bd8:	8a cf       	rjmp	.-236    	; 0xaee <dispatcher+0x2a>
 			/*Set Remaining To The Periodicity*/
 			Tasks_Arr[j].Remaining_Ticks = Tasks_Arr[j].Task_Periodicity;
 		}
 	}
 	/*Set Flag To Zero*/
 		flag = ZERO;
- 924:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
+ bda:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <_edata>
 	}
- 928:	00 00       	nop
- 92a:	0f 90       	pop	r0
- 92c:	0f 90       	pop	r0
- 92e:	0f 90       	pop	r0
- 930:	0f 90       	pop	r0
- 932:	df 91       	pop	r29
- 934:	cf 91       	pop	r28
- 936:	08 95       	ret
+ bde:	00 00       	nop
+ be0:	0f 90       	pop	r0
+ be2:	0f 90       	pop	r0
+ be4:	0f 90       	pop	r0
+ be6:	0f 90       	pop	r0
+ be8:	df 91       	pop	r29
+ bea:	cf 91       	pop	r28
+ bec:	08 95       	ret
 
-00000938 <Task1>:
+00000bee <Task1>:
 
 #include "LEDS.h"
 
 /*Task 1*/	
 void Task1()
 {
- 938:	cf 93       	push	r28
- 93a:	df 93       	push	r29
- 93c:	cd b7       	in	r28, 0x3d	; 61
- 93e:	de b7       	in	r29, 0x3e	; 62
+ bee:	cf 93       	push	r28
+ bf0:	df 93       	push	r29
+ bf2:	cd b7       	in	r28, 0x3d	; 61
+ bf4:	de b7       	in	r29, 0x3e	; 62
+	/*Toggle The Led 1*/
 	Led_One_Toggle();
- 940:	0e 94 d4 02 	call	0x5a8	; 0x5a8 <Led_One_Toggle>
+ bf6:	0e 94 d4 02 	call	0x5a8	; 0x5a8 <Led_One_Toggle>
 }
- 944:	00 00       	nop
- 946:	df 91       	pop	r29
- 948:	cf 91       	pop	r28
- 94a:	08 95       	ret
+ bfa:	00 00       	nop
+ bfc:	df 91       	pop	r29
+ bfe:	cf 91       	pop	r28
+ c00:	08 95       	ret
 
-0000094c <Task2>:
+00000c02 <Task2>:
 /*Task2*/
 void Task2()
 {
- 94c:	cf 93       	push	r28
- 94e:	df 93       	push	r29
- 950:	cd b7       	in	r28, 0x3d	; 61
- 952:	de b7       	in	r29, 0x3e	; 62
+ c02:	cf 93       	push	r28
+ c04:	df 93       	push	r29
+ c06:	cd b7       	in	r28, 0x3d	; 61
+ c08:	de b7       	in	r29, 0x3e	; 62
+	/*Toggle The Led 2*/
 	Led_Two_Toggle();
- 954:	0e 94 df 02 	call	0x5be	; 0x5be <Led_Two_Toggle>
+ c0a:	0e 94 df 02 	call	0x5be	; 0x5be <Led_Two_Toggle>
 }
- 958:	00 00       	nop
- 95a:	df 91       	pop	r29
- 95c:	cf 91       	pop	r28
- 95e:	08 95       	ret
+ c0e:	00 00       	nop
+ c10:	df 91       	pop	r29
+ c12:	cf 91       	pop	r28
+ c14:	08 95       	ret
 
-00000960 <Task3>:
+00000c16 <Task3>:
 /*Task3*/
 void Task3()
 {
- 960:	cf 93       	push	r28
- 962:	df 93       	push	r29
- 964:	cd b7       	in	r28, 0x3d	; 61
- 966:	de b7       	in	r29, 0x3e	; 62
+ c16:	cf 93       	push	r28
+ c18:	df 93       	push	r29
+ c1a:	cd b7       	in	r28, 0x3d	; 61
+ c1c:	de b7       	in	r29, 0x3e	; 62
+	/*Toggle The Led 3*/
 	Led_Three_Toggle();
- 968:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <Led_Three_Toggle>
+ c1e:	0e 94 ea 02 	call	0x5d4	; 0x5d4 <Led_Three_Toggle>
 }
- 96c:	00 00       	nop
- 96e:	df 91       	pop	r29
- 970:	cf 91       	pop	r28
- 972:	08 95       	ret
+ c22:	00 00       	nop
+ c24:	df 91       	pop	r29
+ c26:	cf 91       	pop	r28
+ c28:	08 95       	ret
 
-00000974 <Task4>:
+00000c2a <Task4>:
 /*Task 4*/
 void Task4()
 {
- 974:	cf 93       	push	r28
- 976:	df 93       	push	r29
- 978:	cd b7       	in	r28, 0x3d	; 61
- 97a:	de b7       	in	r29, 0x3e	; 62
+ c2a:	cf 93       	push	r28
+ c2c:	df 93       	push	r29
+ c2e:	cd b7       	in	r28, 0x3d	; 61
+ c30:	de b7       	in	r29, 0x3e	; 62
+	/*Toggle The Led 4*/
 	Led_Four_Toggle();
- 97c:	0e 94 f5 02 	call	0x5ea	; 0x5ea <Led_Four_Toggle>
+ c32:	0e 94 f5 02 	call	0x5ea	; 0x5ea <Led_Four_Toggle>
 }
- 980:	00 00       	nop
- 982:	df 91       	pop	r29
- 984:	cf 91       	pop	r28
- 986:	08 95       	ret
+ c36:	00 00       	nop
+ c38:	df 91       	pop	r29
+ c3a:	cf 91       	pop	r28
+ c3c:	08 95       	ret
 
-00000988 <timer_init>:
+00000c3e <timer_init>:
 uint8 Tick;
 /*Global Setting To Set Timer For 1 MSec on 16 MHZ Crystal*/
 
 
 void timer_init(void)
 {
- 988:	cf 93       	push	r28
- 98a:	df 93       	push	r29
- 98c:	cd b7       	in	r28, 0x3d	; 61
- 98e:	de b7       	in	r29, 0x3e	; 62
+ c3e:	cf 93       	push	r28
+ c40:	df 93       	push	r29
+ c42:	cd b7       	in	r28, 0x3d	; 61
+ c44:	de b7       	in	r29, 0x3e	; 62
 	/**/
 	/*Enable Global Interrupt*/
 	SREG |= (1<<IBIT);
- 990:	8f e5       	ldi	r24, 0x5F	; 95
- 992:	90 e0       	ldi	r25, 0x00	; 0
- 994:	2f e5       	ldi	r18, 0x5F	; 95
- 996:	30 e0       	ldi	r19, 0x00	; 0
- 998:	f9 01       	movw	r30, r18
- 99a:	20 81       	ld	r18, Z
- 99c:	20 68       	ori	r18, 0x80	; 128
- 99e:	fc 01       	movw	r30, r24
- 9a0:	20 83       	st	Z, r18
+ c46:	8f e5       	ldi	r24, 0x5F	; 95
+ c48:	90 e0       	ldi	r25, 0x00	; 0
+ c4a:	2f e5       	ldi	r18, 0x5F	; 95
+ c4c:	30 e0       	ldi	r19, 0x00	; 0
+ c4e:	f9 01       	movw	r30, r18
+ c50:	20 81       	ld	r18, Z
+ c52:	20 68       	ori	r18, 0x80	; 128
+ c54:	fc 01       	movw	r30, r24
+ c56:	20 83       	st	Z, r18
 	/*Enable Timer 0*/
 	TIMSK |=(1<<OCIE0);
- 9a2:	89 e5       	ldi	r24, 0x59	; 89
- 9a4:	90 e0       	ldi	r25, 0x00	; 0
- 9a6:	29 e5       	ldi	r18, 0x59	; 89
- 9a8:	30 e0       	ldi	r19, 0x00	; 0
- 9aa:	f9 01       	movw	r30, r18
- 9ac:	20 81       	ld	r18, Z
- 9ae:	22 60       	ori	r18, 0x02	; 2
- 9b0:	fc 01       	movw	r30, r24
- 9b2:	20 83       	st	Z, r18
+ c58:	89 e5       	ldi	r24, 0x59	; 89
+ c5a:	90 e0       	ldi	r25, 0x00	; 0
+ c5c:	29 e5       	ldi	r18, 0x59	; 89
+ c5e:	30 e0       	ldi	r19, 0x00	; 0
+ c60:	f9 01       	movw	r30, r18
+ c62:	20 81       	ld	r18, Z
+ c64:	22 60       	ori	r18, 0x02	; 2
+ c66:	fc 01       	movw	r30, r24
+ c68:	20 83       	st	Z, r18
 	/*Define Values To Timer To be 1 mSec*/
 	TCNT0 = 0 ;
- 9b4:	82 e5       	ldi	r24, 0x52	; 82
- 9b6:	90 e0       	ldi	r25, 0x00	; 0
- 9b8:	fc 01       	movw	r30, r24
- 9ba:	10 82       	st	Z, r1
+ c6a:	82 e5       	ldi	r24, 0x52	; 82
+ c6c:	90 e0       	ldi	r25, 0x00	; 0
+ c6e:	fc 01       	movw	r30, r24
+ c70:	10 82       	st	Z, r1
 	OCR0 = 249 ;
- 9bc:	8c e5       	ldi	r24, 0x5C	; 92
- 9be:	90 e0       	ldi	r25, 0x00	; 0
- 9c0:	29 ef       	ldi	r18, 0xF9	; 249
- 9c2:	fc 01       	movw	r30, r24
- 9c4:	20 83       	st	Z, r18
+ c72:	8c e5       	ldi	r24, 0x5C	; 92
+ c74:	90 e0       	ldi	r25, 0x00	; 0
+ c76:	29 ef       	ldi	r18, 0xF9	; 249
+ c78:	fc 01       	movw	r30, r24
+ c7a:	20 83       	st	Z, r18
 	/*Prescaler 64*/
 	TCCR0 |= (1<<CS00)|(1<<CS01)|(1<<WGM01);
- 9c6:	83 e5       	ldi	r24, 0x53	; 83
- 9c8:	90 e0       	ldi	r25, 0x00	; 0
- 9ca:	23 e5       	ldi	r18, 0x53	; 83
- 9cc:	30 e0       	ldi	r19, 0x00	; 0
- 9ce:	f9 01       	movw	r30, r18
- 9d0:	20 81       	ld	r18, Z
- 9d2:	2b 60       	ori	r18, 0x0B	; 11
- 9d4:	fc 01       	movw	r30, r24
- 9d6:	20 83       	st	Z, r18
+ c7c:	83 e5       	ldi	r24, 0x53	; 83
+ c7e:	90 e0       	ldi	r25, 0x00	; 0
+ c80:	23 e5       	ldi	r18, 0x53	; 83
+ c82:	30 e0       	ldi	r19, 0x00	; 0
+ c84:	f9 01       	movw	r30, r18
+ c86:	20 81       	ld	r18, Z
+ c88:	2b 60       	ori	r18, 0x0B	; 11
+ c8a:	fc 01       	movw	r30, r24
+ c8c:	20 83       	st	Z, r18
 }
- 9d8:	00 00       	nop
- 9da:	df 91       	pop	r29
- 9dc:	cf 91       	pop	r28
- 9de:	08 95       	ret
+ c8e:	00 00       	nop
+ c90:	df 91       	pop	r29
+ c92:	cf 91       	pop	r28
+ c94:	08 95       	ret
 
-000009e0 <set_Callback_Function>:
+00000c96 <set_Callback_Function>:
 
 void set_Callback_Function(void (*ptr)(void))
 {
- 9e0:	cf 93       	push	r28
- 9e2:	df 93       	push	r29
- 9e4:	00 d0       	rcall	.+0      	; 0x9e6 <set_Callback_Function+0x6>
- 9e6:	cd b7       	in	r28, 0x3d	; 61
- 9e8:	de b7       	in	r29, 0x3e	; 62
- 9ea:	9a 83       	std	Y+2, r25	; 0x02
- 9ec:	89 83       	std	Y+1, r24	; 0x01
+ c96:	cf 93       	push	r28
+ c98:	df 93       	push	r29
+ c9a:	00 d0       	rcall	.+0      	; 0xc9c <set_Callback_Function+0x6>
+ c9c:	cd b7       	in	r28, 0x3d	; 61
+ c9e:	de b7       	in	r29, 0x3e	; 62
+ ca0:	9a 83       	std	Y+2, r25	; 0x02
+ ca2:	89 83       	std	Y+1, r24	; 0x01
 	Pointer_To_Func = ptr;
- 9ee:	89 81       	ldd	r24, Y+1	; 0x01
- 9f0:	9a 81       	ldd	r25, Y+2	; 0x02
- 9f2:	90 93 c7 00 	sts	0x00C7, r25	; 0x8000c7 <Pointer_To_Func+0x1>
- 9f6:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <Pointer_To_Func>
+ ca4:	89 81       	ldd	r24, Y+1	; 0x01
+ ca6:	9a 81       	ldd	r25, Y+2	; 0x02
+ ca8:	90 93 c7 00 	sts	0x00C7, r25	; 0x8000c7 <Pointer_To_Func+0x1>
+ cac:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <Pointer_To_Func>
 }
- 9fa:	00 00       	nop
- 9fc:	0f 90       	pop	r0
- 9fe:	0f 90       	pop	r0
- a00:	df 91       	pop	r29
- a02:	cf 91       	pop	r28
- a04:	08 95       	ret
+ cb0:	00 00       	nop
+ cb2:	0f 90       	pop	r0
+ cb4:	0f 90       	pop	r0
+ cb6:	df 91       	pop	r29
+ cb8:	cf 91       	pop	r28
+ cba:	08 95       	ret
 
-00000a06 <__vector_10>:
+00000cbc <__vector_10>:
 ISR(TIMER0_COMP_vect)
 {
- a06:	1f 92       	push	r1
- a08:	0f 92       	push	r0
- a0a:	00 90 5f 00 	lds	r0, 0x005F	; 0x80005f <__TEXT_REGION_LENGTH__+0x7e005f>
- a0e:	0f 92       	push	r0
- a10:	11 24       	eor	r1, r1
- a12:	2f 93       	push	r18
- a14:	3f 93       	push	r19
- a16:	4f 93       	push	r20
- a18:	5f 93       	push	r21
- a1a:	6f 93       	push	r22
- a1c:	7f 93       	push	r23
- a1e:	8f 93       	push	r24
- a20:	9f 93       	push	r25
- a22:	af 93       	push	r26
- a24:	bf 93       	push	r27
- a26:	ef 93       	push	r30
- a28:	ff 93       	push	r31
- a2a:	cf 93       	push	r28
- a2c:	df 93       	push	r29
- a2e:	cd b7       	in	r28, 0x3d	; 61
- a30:	de b7       	in	r29, 0x3e	; 62
+ cbc:	1f 92       	push	r1
+ cbe:	0f 92       	push	r0
+ cc0:	00 90 5f 00 	lds	r0, 0x005F	; 0x80005f <__TEXT_REGION_LENGTH__+0x7e005f>
+ cc4:	0f 92       	push	r0
+ cc6:	11 24       	eor	r1, r1
+ cc8:	2f 93       	push	r18
+ cca:	3f 93       	push	r19
+ ccc:	4f 93       	push	r20
+ cce:	5f 93       	push	r21
+ cd0:	6f 93       	push	r22
+ cd2:	7f 93       	push	r23
+ cd4:	8f 93       	push	r24
+ cd6:	9f 93       	push	r25
+ cd8:	af 93       	push	r26
+ cda:	bf 93       	push	r27
+ cdc:	ef 93       	push	r30
+ cde:	ff 93       	push	r31
+ ce0:	cf 93       	push	r28
+ ce2:	df 93       	push	r29
+ ce4:	cd b7       	in	r28, 0x3d	; 61
+ ce6:	de b7       	in	r29, 0x3e	; 62
 	if (1 == OS_TICK_INTERVAL_MSEC)
 	{
 		Pointer_To_Func();
- a32:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <Pointer_To_Func>
- a36:	90 91 c7 00 	lds	r25, 0x00C7	; 0x8000c7 <Pointer_To_Func+0x1>
- a3a:	fc 01       	movw	r30, r24
- a3c:	09 95       	icall
+ ce8:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <Pointer_To_Func>
+ cec:	90 91 c7 00 	lds	r25, 0x00C7	; 0x8000c7 <Pointer_To_Func+0x1>
+ cf0:	fc 01       	movw	r30, r24
+ cf2:	09 95       	icall
 	}
 	if (2 == OS_TICK_INTERVAL_MSEC)
 	{
 		Tick++;
 	}
 	if(2 == Tick)
- a3e:	80 91 c8 00 	lds	r24, 0x00C8	; 0x8000c8 <Tick>
- a42:	82 30       	cpi	r24, 0x02	; 2
- a44:	41 f4       	brne	.+16     	; 0xa56 <__vector_10+0x50>
+ cf4:	80 91 c8 00 	lds	r24, 0x00C8	; 0x8000c8 <Tick>
+ cf8:	82 30       	cpi	r24, 0x02	; 2
+ cfa:	41 f4       	brne	.+16     	; 0xd0c <__vector_10+0x50>
 	{
 		Tick = 0;
- a46:	10 92 c8 00 	sts	0x00C8, r1	; 0x8000c8 <Tick>
+ cfc:	10 92 c8 00 	sts	0x00C8, r1	; 0x8000c8 <Tick>
 		Pointer_To_Func();
- a4a:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <Pointer_To_Func>
- a4e:	90 91 c7 00 	lds	r25, 0x00C7	; 0x8000c7 <Pointer_To_Func+0x1>
- a52:	fc 01       	movw	r30, r24
- a54:	09 95       	icall
+ d00:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <Pointer_To_Func>
+ d04:	90 91 c7 00 	lds	r25, 0x00C7	; 0x8000c7 <Pointer_To_Func+0x1>
+ d08:	fc 01       	movw	r30, r24
+ d0a:	09 95       	icall
 	}
- a56:	00 00       	nop
- a58:	df 91       	pop	r29
- a5a:	cf 91       	pop	r28
- a5c:	ff 91       	pop	r31
- a5e:	ef 91       	pop	r30
- a60:	bf 91       	pop	r27
- a62:	af 91       	pop	r26
- a64:	9f 91       	pop	r25
- a66:	8f 91       	pop	r24
- a68:	7f 91       	pop	r23
- a6a:	6f 91       	pop	r22
- a6c:	5f 91       	pop	r21
- a6e:	4f 91       	pop	r20
- a70:	3f 91       	pop	r19
- a72:	2f 91       	pop	r18
- a74:	0f 90       	pop	r0
- a76:	00 92 5f 00 	sts	0x005F, r0	; 0x80005f <__TEXT_REGION_LENGTH__+0x7e005f>
- a7a:	0f 90       	pop	r0
- a7c:	1f 90       	pop	r1
- a7e:	18 95       	reti
+ d0c:	00 00       	nop
+ d0e:	df 91       	pop	r29
+ d10:	cf 91       	pop	r28
+ d12:	ff 91       	pop	r31
+ d14:	ef 91       	pop	r30
+ d16:	bf 91       	pop	r27
+ d18:	af 91       	pop	r26
+ d1a:	9f 91       	pop	r25
+ d1c:	8f 91       	pop	r24
+ d1e:	7f 91       	pop	r23
+ d20:	6f 91       	pop	r22
+ d22:	5f 91       	pop	r21
+ d24:	4f 91       	pop	r20
+ d26:	3f 91       	pop	r19
+ d28:	2f 91       	pop	r18
+ d2a:	0f 90       	pop	r0
+ d2c:	00 92 5f 00 	sts	0x005F, r0	; 0x80005f <__TEXT_REGION_LENGTH__+0x7e005f>
+ d30:	0f 90       	pop	r0
+ d32:	1f 90       	pop	r1
+ d34:	18 95       	reti
 
-00000a80 <_exit>:
- a80:	f8 94       	cli
+00000d36 <_exit>:
+ d36:	f8 94       	cli
 
-00000a82 <__stop_program>:
- a82:	ff cf       	rjmp	.-2      	; 0xa82 <__stop_program>
+00000d38 <__stop_program>:
+ d38:	ff cf       	rjmp	.-2      	; 0xd38 <__stop_program>

@@ -12,21 +12,25 @@
 /*Task 1*/	
 void Task1()
 {
+	/*Toggle The Led 1*/
 	Led_One_Toggle();
 }
 /*Task2*/
 void Task2()
 {
+	/*Toggle The Led 2*/
 	Led_Two_Toggle();
 }
 /*Task3*/
 void Task3()
 {
+	/*Toggle The Led 3*/
 	Led_Three_Toggle();
 }
 /*Task 4*/
 void Task4()
 {
+	/*Toggle The Led 4*/
 	Led_Four_Toggle();
 }
 

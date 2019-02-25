@@ -23,26 +23,10 @@ int main(void)
 	scheduler_Init();
 	
 	/*Add Tasks*/
-	uint8 return_value = scheduler_Add_Task(Task1,FIVE_HUNDRED_OS_TICKS);
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/ 
-	}
-	scheduler_Add_Task(Task2,FIVE_HUNDRED_OS_TICKS);
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/
-	}
-	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS);
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/
-	}
-	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS);
-	if ( return_value == FALSE )
-	{
-		/*Do Something*/
-	}
+	scheduler_Add_Task(Task1,FIVE_HUNDRED_OS_TICKS,4);
+	scheduler_Add_Task(Task2,FIVE_HUNDRED_OS_TICKS,3);
+	scheduler_Add_Task(Task3,FIVE_HUNDRED_OS_TICKS,2);
+	scheduler_Add_Task(Task4,FIVE_HUNDRED_OS_TICKS,1);
 	
     /* Start Schedular */
 	scheduler_Start();

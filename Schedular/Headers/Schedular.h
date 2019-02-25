@@ -36,7 +36,7 @@ typedef struct Tasks_Struct
 
 
 /*Difiniton For The Tasks*/
-uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity);
+uint8 scheduler_Add_Task(void (*Task)(void),uint32 Periodicity,uint8 priority);
 void scheduler_Init();
 void scheduler_Start();
 void dispatcher(void);
